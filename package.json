@@ -1,0 +1,35 @@
+{
+  "name": "react_from_zero",
+  "version": "0.0.1",
+  "description": "a react scaffold which includes redux、react-router、webpack、es6",
+  "main": "./js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jay0815/react_from_zero.git"
+  },
+  "keywords": [
+    "react(v15)",
+    "react-router",
+    "redux",
+    "es6"
+  ],
+  "author": "Jack Qian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jay0815/react_from_zero/issues"
+  },
+  "homepage": "https://github.com/jay0815/react_from_zero#readme",
+  "dependencies": {
+    "create-react-class": "^15.6.0",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.7.1"
+  }
+}
