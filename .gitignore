@@ -1,3 +1,15 @@
 
 package-lock.json
 node_modules/*
+
+dist/bundle.js
+
+dist/index.html
+
+dist/vendor.js
+
+logs/default.log2017-10-13.log
+
+*.2017-09-21
+
+*.log

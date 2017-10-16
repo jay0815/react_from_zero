@@ -21,21 +21,11 @@ import App from '../View/index'; // 首页组件
 //     {Component => <Component {...props} />}
 //   </Bundle>
 // );
-
 // 路由配置
-const RouteConfig = () => (
-  <Router>
-    <div className="app">
-      <Switch>
-        <Route exact path="/" component={Home} />
-        {/* <Route path="/from" component={createComponent(loadFrom)} />
-        <Route path="/comment" component={createComponent(loadComment)} />
-        <Route path="/like" component={createComponent(loadLike)} />
-        <Route path="/list" component={createComponent(loadTodoList)} /> */}
-      </Switch>
-    </div>
-  </Router>
+const RouterConfig = () => (
+	<Router>
+		<Route exact path='/' component={App} />
+	</Router>
 );
-
 // 导出
-export default RouteConfig;
+export default RouterConfig;
