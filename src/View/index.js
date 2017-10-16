@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import { hashHistory } from 'react-router';
@@ -12,7 +13,6 @@ class App extends Component {
 		return (
 			<div>
 				<button onClick={() => {
-					console.log(123);
 					this.props.demoSetState();
 				}}
 				>
@@ -23,6 +23,13 @@ class App extends Component {
 		);
 	}
 }
+App.propTypes = {
+	// cancelInfo: PropTypes.object,
+	// memo: PropTypes.string.isRequired,
+	isAuth: PropTypes.bool.isRequired,
+	// itemList: PropTypes.array.isRequired,
+	demoSetState: PropTypes.func.isRequired
+};
 function mapStateToProps (state) {
 	return {
 		isAuth: state.App.isAuth

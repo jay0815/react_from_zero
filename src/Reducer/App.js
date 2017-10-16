@@ -13,7 +13,7 @@ const initialState = {
 export default reducerCreators(initialState, {
 	[`${types.SET_APP_STATE}`]: (state, data, params) => {
 		return Object.assign({}, state, {
-			isAuth: true
+			isAuth: !state.isAuth
 		});
 		// return state.set('isAuth', !state.isAuth);
 	}
