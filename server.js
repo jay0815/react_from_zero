@@ -12,6 +12,7 @@ const express = require('express'),
     // utils = require("./utils"),
     ejs = require('ejs'),
     EventEmitter = require('events').EventEmitter;
+// var https = require('https');
 var jsonParser = bodyParser.json();
 var http = require('http');
 var URL = require('url');
@@ -78,49 +79,65 @@ app.get(['/*'], function(req, res) {
   res.sendFile(path.join(__dirname, '/dist/index.html'));
 });
 
-// app.post('/login', jsonParser, function (req, res) {
-//     let username = req.body.username;
-//     let pwd = req.body.password;
-//     let url = req.headers.referer;
-//     // console.log("------"+configObject.agUrl)
-//     // 使用oauth2的方式调用ag接口
-//     request.post("http://120.77.124.71:8003/login?username=" + username + "&password=" + pwd + "&url=" + url,
-//     // request.post("http://120.76.222.26:8003/login?username=" + username + "&password=" + pwd + "&url=" + url,
-//         {
-//             timeout: 5000,
-//         }, function (error, response, body) {
-//             if (!error && response.statusCode == 200) {
-//                 normalLog.info("case登录【" + username + "," + pwd + ",AG返回:" + body);
-//                 // todo try catch
-//                 let userResult = JSON.parse(body);
-//                 if (userResult.code != 0) {
-//                     res.json({code: "-1", message: userResult.message});
-//                     // res.clearCookie('myPosToken');
-//                     return;
-//                 }
-//                 userResult.content.url = 'home';
-//
-//                 let user = userResult.content;
-//
-//                 let entry = 'login';
-//
-//                 var token = createToken(userResult.content);
-//
-//
-//                 buildCookie(res,token,user,entry);
-//
-//                 res.json({code: "0", message: userResult.message,content:userResult.content});
-//
-//                 normalLog.info(userResult)
-//
-//                 return;
-//             } else {
-//                 event.emit('agError', res,"","case登录【" + username + "," + pwd + "】", body, response, error);
-//                 return;
-//             }
-//         });
-//
-// });
+// 登录逻辑
+app.post('/login', jsonParser, function (req, res) {
+    let username = req.body.username;
+    let pwd = req.body.password;
+    let url = req.body.url;
+    normalLog.info(configObject.agUrl + "login?username="+username+'&password='+pwd+'&url='+url);
+	if( isProduction || isStaging ){
+		var options = {
+				hostname: configObject.agUrl,
+				path: '/login?username='+username+'&password='+pwd+'&url='+url,
+				method: 'POST'
+				// key: fs.readFileSync('./keys/client.key'),
+				// cert: fs.readFileSync('./keys/client.crt'),
+				// ca: [fs.readFileSync('./keys/ca.crt')]
+		 };
+		options.agent = new https.Agent(options);
+		var reqwe = https.request(options, function(response) {
+			response.setEncoding('utf-8');
+		    response.on('data', function (data) {
+				let user = JSON.parse(data).content;
+				var token = createToken(JSON.parse(data));
+				buildCookie(res,token,user);
+				res.json(JSON.parse(data));
+		    });
+			return;
+		 });
+		 reqwe.end();
+			reqwe.on('error', function(e) {
+				console.log(e);
+			});
+	}else{
+		request.post(configObject.agUrl + "login?username="+username+'&password='+pwd+'&url='+url,
+			function (error, response, body) {
+				if (!error && response.statusCode == 200) {
+					normalLog.trace("登录【" + username + "," + pwd + ",https返回:" + body);
+					// todo try catch
+					let userResult = JSON.parse(body);
+
+					if (userResult.code != 0) {
+						res.json({code: "-1", message: userResult.message});
+						return;
+					}
+
+					let user = userResult.content;
+					var token = createToken(userResult.content);
+					buildCookie(res,token,user);
+
+					res.json({code: userResult.code, message: userResult.message,content:userResult.content});
+					normalLog.trace(user,username)
+
+					return;
+				} else {
+					event.emit('requestError', res, "登录【" + username + "," + pwd + "】", body, response, error);
+					return;
+				}
+			});
+
+	}
+});
 
 
 let event = new EventEmitter();
