@@ -20,7 +20,8 @@ module.exports = {
         'redux',
         'react-router-redux',
         'redux-logger',
-        'redux-thunk',
+        // 'redux-saga',
+		'redux-thunk',
       ]
       // 为了优化，切割代码，提取第三方库（实际上，我们将会引入很多第三方库）
     },
@@ -41,7 +42,8 @@ module.exports = {
 
       filename:'index.html',
       // 文件名以及文件将要存放的位置
-
+      favicon:'./Template/booking.ico',
+	  // favicon路径
       inject:'body',
       // js插入的位置，true/'head'  false/'body'
 

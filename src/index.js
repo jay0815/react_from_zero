@@ -10,7 +10,6 @@ import store from './Store'; // 引入Store
 store.subscribe(() => {
 	console.log(store.getState());
 });
-
 const render = (Component) => {
 	ReactDOM.render(
 		<AppContainer>

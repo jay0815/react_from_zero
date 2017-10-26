@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import Bundle from '../Bundle';
 // 导入各种组件
 // // 同步加载
-import App from '../View/index'; // 首页组件
+import App from '../View/Entry'; // 首页组件
+import Home from '../View/Home'; // 首页组件
+
 
 // 异步加载
 /*eslint-disable*/
@@ -24,7 +26,10 @@ import App from '../View/index'; // 首页组件
 // 路由配置
 const RouterConfig = () => (
 	<Router>
-		<Route exact path='/' component={App} />
+		<div>
+			<Route exact path='/' component={App} />
+			<Route exact path='/home' component={Home} />
+		</div>
 	</Router>
 );
 // 导出

@@ -6,8 +6,9 @@ import { reducerCreators } from '../Util/index';
 
 const initialState = {
 	isAuth: false,
-	isFisrt: false,
-	isAdmin: false
+	stop: false,
+	start: false,
+	word: 321
 };
 
 export default reducerCreators(initialState, {
@@ -16,5 +17,12 @@ export default reducerCreators(initialState, {
 			isAuth: !state.isAuth
 		});
 		// return state.set('isAuth', !state.isAuth);
+	},
+	[`${types.CHANGE}`]: (state, data, params) => {
+		return Object.assign({}, state, {
+			...params
+		});
+		// return state.set('isAuth', !state.isAuth);
 	}
+
 });
