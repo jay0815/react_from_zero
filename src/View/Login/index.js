@@ -16,7 +16,6 @@ class Login extends Component {
     	sessionStorage.setItem('jackInfo', JSON.stringify(info));
 	}
 	render () {
-		console.log(this.props);
 		const {dispatch} = this.props;
 		return (
 			<div>

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 // import { hashHistory } from 'react-router';
+import './index.less';
 import { demoSetState, change } from '../../Action/index';
 
 
@@ -15,17 +16,22 @@ class App extends Component {
 		return (
 			<div>
 				<NavLink to='/Home'>Go Home</NavLink>
-				<button onClick={() => {
-					console.log('stop');
-					this.props.change('stop');
-				}}
+				<button
+					style={{ width: '80px' }}
+					onClick={() => {
+						console.log('stop');
+						this.props.change('stop');
+					}}
 				>
 					123
 				</button>
-				<button onClick={() => {
-					console.log('start');
-					this.props.change('start');
-				}}
+				<button
+					className='button-style'
+					style={{ color: 'cornflowerblue' }}
+					onClick={() => {
+						console.log('start');
+						this.props.change('start');
+					}}
 				>
 					2333
 				</button>

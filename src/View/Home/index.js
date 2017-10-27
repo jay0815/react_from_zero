@@ -8,15 +8,8 @@ import { demoSetState, change } from '../../Action/index';
 
 class Home extends Component {
 	componentWillMount () {
-		const info = {
-			name: 'Jack',
-			age: 20,
-			id: '001'
-		};
-		sessionStorage.setItem('jackInfo', JSON.stringify(info));
 	}
 	render () {
-		console.log(this.props);
 		return (
 			<div>
 				<NavLink to='/'>Go Back</NavLink>
