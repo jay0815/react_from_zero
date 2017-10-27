@@ -7,9 +7,10 @@ const path = require('path');
 // import px2rem from 'postcss-pxtorem';
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ConsoleLogOnBuildWebpackPlugin = require('./normal');
 // const pxtorem = require('postcss-pxtorem');
-
 module.exports = {
+	//debug: true, loaders 的 debug 模式将在 webpack 3 或后续版本中取消。
 	entry: {
 		// 文件入口配置
 		index: './src/index',
@@ -34,7 +35,7 @@ module.exports = {
 		// 命名生成的JS
 	},
 	plugins: [
-		new webpack.optimize.OccurrenceOrderPlugin(),
+		// new webpack.optimize.OccurrenceOrderPlugin(), webpack 2 or 3 及 更高版本中 OccurrenceOrderPlugin 被默认加载
 		new HtmlWebpackPlugin({
 			template: './Template/index.html',
 			// html模板的路径
@@ -45,11 +46,8 @@ module.exports = {
 			// favicon路径
 			inject: 'body',
 			// js插入的位置，true/'head'  false/'body'
-
-
 			chunks: ['vendor', 'index'],
 			// 指定要排除的chunk，根据entry的key配置，不配置就会过滤所有页面的资源
-
 			//  chunks: ['vendor', 'index' ],
 			// 指定引入的chunk，根据entry的key配置，不配置就会引入所有页面的资源
 
@@ -87,7 +85,11 @@ module.exports = {
 		// 很多库的内部，有process.NODE_ENV的判断语句，
 		// 改为production。最直观的就是没有所有的debug相关的东西，体积会减少很多
 
-		new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' })
+		new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
+		new webpack.LoaderOptionsPlugin({
+			debug: true
+		}),
+		new ConsoleLogOnBuildWebpackPlugin()
 	// 'vendor' 就是把依赖库(比如react react-router, redux)全部打包到 vendor.js中
 	// 'vendor.js' 就是把自己写的相关js打包到bundle.js中
 	// 一般依赖库放到前面，所以vendor放第一个
