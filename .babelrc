@@ -1,43 +1,36 @@
-{
-  "env": {
-  	"production": {
-	  	"presets": [
-			"react",
-			"stage-2",
-		  	["env", {
-	        	"targets": {
-	          		"browsers": ["last 2 versions", "ie > 7"]
-	  			},
-	      	}],
-	  	],
-		"plugins": [[
-	    "transform-runtime",
-	    {
-	      "helpers": false,
-	      "polyfill": false,
-	      "regenerator": true,
-	      "moduleName": "babel-runtime"
-	    }
-	  ]]
-	},
-    "development": {
-		"presets": [
-			"react",
-			"stage-2",
-	  	  ["env", {
-	  		"modules": false
-	  	  }],
-	    ],
-	"plugins": [[
-      "transform-runtime",
-	  "react-hot-loader/babel",
-      {
-        "helpers": false,
-        "polyfill": false,
-        "regenerator": true,
-        "moduleName": "babel-runtime"
-      }
-    ]]
-  },
-  }
+ {
+	 "presets": [
+		 "react",
+		 "stage-2",
+	 ],
+	 "plugins": [
+		 [
+			 "transform-runtime",
+			 {
+	           "helpers": false,
+	           "polyfill": false,
+	           "regenerator": true,
+	           "moduleName": "babel-runtime"
+	         }
+		 ]
+	 ],
+	 "env": {
+		"production": {
+			"presets": [
+				["env", {
+		        	"targets": {
+		          		"browsers": ["last 2 versions", "ie > 7"]
+		  			}
+		      	}]
+			]
+		},
+		"development": {
+			"presets": [
+				["env", {
+					"modules": false
+				}]
+			],
+			"plugins": ["react-hot-loader/babel"]
+		}
+	 }
  }
