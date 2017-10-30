@@ -5,11 +5,12 @@ import { Provider } from 'react-redux';
 // AppContainer 是一个 HMR 必须的包裹(wrapper)组件
 import RouterConfig from './Router'; // 路由配置
 import store from './Store'; // 引入Store
+import Redbox from 'redbox-react';
 // const store = configureStore();
 // 订阅state改变
-store.subscribe(() => {
-	console.log(store.getState());
-});
+// store.subscribe(() => {
+// 	console.log(store.getState());
+// });
 const render = (Component) => {
 	ReactDOM.render(
 		<AppContainer>
@@ -21,9 +22,19 @@ const render = (Component) => {
 
 render(RouterConfig);
 
-// 模块热替换的 API
-// if (module.hot) {
-//   module.hot.accept('./Router', () => {
-//     render(App);
-//   });
-// }
+if (module.hot) {
+	/**
+	* Warning from React Router, caused by react-hot-loader.
+	* The warning can be safely ignored, so filter it from the console.
+	* Otherwise you'll see it every time something changes.
+	* See https://github.com/gaearon/react-hot-loader/issues/298
+	*/
+	const orgError = console.error; // eslint-disable-line no-console
+	console.error = (message) => { // eslint-disable-line no-console
+		if (message && message.indexOf('You cannot change <Router routes>;') === -1) {
+			// Log the error as normally
+			orgError.apply(console, [message]);
+		}
+	};
+	module.hot.accept('./Router', () => { render(RouterConfig); });
+}

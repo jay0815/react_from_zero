@@ -1,16 +1,24 @@
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import precss from 'precss';
+import autoprefixer from 'autoprefixer';
+import rucksackCss from 'rucksack-css';
+import ConsoleLogOnBuildWebpackPlugin from './normal';
+
 const path = require('path');
-// import webpack from 'webpack';
-// import HtmlWebpackPlugin from 'html-webpack-plugin'
-// import precss from 'precss'
-// import autoprefixer from 'autoprefixer'
-// import rucksackCss from 'rucksack-css'
+
+const svgSpriteDirs = [
+	// require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
+	path.resolve(__dirname, 'src/Svg'), // 业务代码本地私有 svg 存放目录
+];
+
 // import px2rem from 'postcss-pxtorem';
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ConsoleLogOnBuildWebpackPlugin = require('./normal');
-// const pxtorem = require('postcss-pxtorem');
+// var webpack = require('webpack');
+// var HtmlWebpackPlugin = require('html-webpack-plugin');
+// var autoprefixer = require('autoprefixer');
+// var pxtorem = require('postcss-pxtorem'); //移动端适配使用
 module.exports = {
-	//debug: true, loaders 的 debug 模式将在 webpack 3 或后续版本中取消。
+	// debug: true, loaders 的 debug 模式将在 webpack 3 或后续版本中取消。
 	entry: {
 		// 文件入口配置
 		index: './src/index',
@@ -19,7 +27,7 @@ module.exports = {
 			'react-dom',
 			'react-router-dom',
 			'redux',
-			'redux-logger',
+			// 'redux-logger',
 			// 'redux-saga',
 			'redux-thunk',
 		]
@@ -31,7 +39,7 @@ module.exports = {
 		// 输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它.
 		publicPath: '/',
 		// 模板、样式、脚本、图片等资源对应的server上的路径
-		filename: 'bundle.js'
+		filename: 'index.js'
 		// 命名生成的JS
 	},
 	plugins: [
@@ -87,12 +95,12 @@ module.exports = {
 
 		new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
 		new webpack.LoaderOptionsPlugin({
-			debug: true
-		}),
-		new ConsoleLogOnBuildWebpackPlugin()
-	// 'vendor' 就是把依赖库(比如react react-router, redux)全部打包到 vendor.js中
-	// 'vendor.js' 就是把自己写的相关js打包到bundle.js中
-	// 一般依赖库放到前面，所以vendor放第一个
+			debug: false
+		})
+		// new ConsoleLogOnBuildWebpackPlugin()
+		// 'vendor' 就是把依赖库(比如react react-router, redux)全部打包到 vendor.js中
+		// 'vendor.js' 就是把自己写的相关js打包到bundle.js中
+		// 一般依赖库放到前面，所以vendor放第一个
 	],
 	module: {
 		rules: [
@@ -102,15 +110,43 @@ module.exports = {
 					loader: 'style-loader' // creates style nodes from JS strings
 				}, {
 					loader: 'css-loader' // translates CSS into CommonJS
-				}, {
+				},
+				{
+					loader: 'postcss-loader', // translates CSS into CommonJS
+					options: {
+						plugins: () => [autoprefixer({
+							browsers: ['last 2 versions', 'ie>8']
+						}), rucksackCss()],
+					}
+				},
+				{
 					loader: 'less-loader' // compiles Less to CSS
+				}]
+			},
+			{
+				test: /\.(otf|eot|ttf|woff|woff2).*$/,
+				use: [{
+					loader: 'url-loader?limit=10000'
+				}]
+			},
+			{
+				test: /\.(gif|jpe?g|png|ico)$/,
+				use: [{
+					loader: 'url-loader?limit=10000'
 				}]
 			},
 			{
 				test: /\.js$/,
 				exclude: /(node_modules)/,
 				use: [{
-					loader: 'babel-loader?presets[]=es2015'
+					loader: 'babel-loader'
+				}]
+			},
+			{
+				test: /\.(svg).*$/i,
+				include: svgSpriteDirs, // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
+				use: [{
+					loader: 'svg-sprite'
 				}]
 			}
 		]

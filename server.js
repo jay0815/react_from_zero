@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const config = require('./webpack.config.js');
+const config = require('./webpack.config-dev.js');
 const express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
@@ -9,10 +9,8 @@ const express = require('express'),
     request = require('request'),
     path = require('path'),
     log4js = require("log4js"),
-    // utils = require("./utils"),
     ejs = require('ejs'),
     EventEmitter = require('events').EventEmitter;
-// var https = require('https');
 var jsonParser = bodyParser.json();
 var http = require('http');
 var URL = require('url');
@@ -35,6 +33,8 @@ app.set('view engine', 'html');
 //         normal: 'INFO'
 //     }
 // });
+console.log(config);
+
 
 log4js.configure({
     appenders: {
@@ -65,15 +65,14 @@ const isDeveloping = !isProduction;
 app.use(cookieParser());
 
 //通过localhost可以访问项目文件夹下的所有文件，等于动态为每个静态文件创建了路由
-// const compiler = webpack(config);
-
+const compiler = webpack(config);
 app.use(express.static(path.join(__dirname, '/dist')))
-// app.use(require('webpack-dev-middleware')(compiler, {
-//   noInfo: true,
-//   publicPath: config.output.publicPath
-// }));
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
+}));
 
-// app.use(require('webpack-hot-middleware')(compiler));
+app.use(require('webpack-hot-middleware')(compiler));
 
 app.get(['/*'], function(req, res) {
   res.sendFile(path.join(__dirname, '/dist/index.html'));
@@ -84,11 +83,10 @@ app.post('/login', jsonParser, function (req, res) {
     let username = req.body.username;
     let pwd = req.body.password;
     let url = req.body.url;
-    normalLog.info(configObject.agUrl + "login?username="+username+'&password='+pwd+'&url='+url);
 	if( isProduction || isStaging ){
 		var options = {
-				hostname: configObject.agUrl,
-				path: '/login?username='+username+'&password='+pwd+'&url='+url,
+				hostname: 'https-url',
+				path: 'restful-name'+'params',
 				method: 'POST'
 				// key: fs.readFileSync('./keys/client.key'),
 				// cert: fs.readFileSync('./keys/client.crt'),
@@ -110,10 +108,9 @@ app.post('/login', jsonParser, function (req, res) {
 				console.log(e);
 			});
 	}else{
-		request.post(configObject.agUrl + "login?username="+username+'&password='+pwd+'&url='+url,
+		request.post('https-url'+'restful-name'+'params',
 			function (error, response, body) {
 				if (!error && response.statusCode == 200) {
-					normalLog.trace("登录【" + username + "," + pwd + ",https返回:" + body);
 					// todo try catch
 					let userResult = JSON.parse(body);
 
@@ -124,10 +121,8 @@ app.post('/login', jsonParser, function (req, res) {
 
 					let user = userResult.content;
 					var token = createToken(userResult.content);
-					buildCookie(res,token,user);
 
 					res.json({code: userResult.code, message: userResult.message,content:userResult.content});
-					normalLog.trace(user,username)
 
 					return;
 				} else {
@@ -144,25 +139,6 @@ let event = new EventEmitter();
 
 // function createToken(content){
 //     return jwt.sign({
-//         "accountUuid": content.accountUuid,
-//         "account": content.account,
-//         "mobile": content.mobile,
-//         "email": content.email,
-//         "realName": content.realName,
-//         "gender": content.gender,
-//         "birthday": content.birthday,
-//         "idCardNum": content.idCardNum,
-//         "marriageStatus": content.marriageStatus,
-//         "originPlace": content.originPlace,
-//         "idType": content.idType,
-//         "telephone": content.telephone,
-//         "type": content.type,
-//         "address": content.address,
-//         "memo": content.memo,
-//         "user_token": content.user_token,
-//         "residentUuid": content.residentUuid,
-//         "cropId": content.cropId,
-//         "checkInTime": content.checkInTime
 //     },
 //     'shhhhh',
 //     {
@@ -173,25 +149,13 @@ let event = new EventEmitter();
 //     }
 // );
 // }
-
-// function buildCookie(res,token,user,entry){
-//     res.cookie('myPosToken', token, {maxAge: 1000 * 3600 * 24, httpOnly: false, path: '/'});
-//     res.cookie('mypwd', user.user_token, {maxAge: 1000 * 3600 * 24, httpOnly: false, path: '/'});
-//     res.cookie('myComId', user.communityUuid, {maxAge: 1000 * 3600 * 24, httpOnly: false, path: '/'});
-//     res.cookie('myorg', user.communityName, {maxAge: 1000 * 3600 * 24, httpOnly: false, path: '/'});
-//     res.cookie('myPosInfo', user, {maxAge: 1000 * 3600 * 24, httpOnly: false, path: '/'});
-//     res.cookie('entry', entry, {maxAge: 1000 * 3600 * 24, httpOnly: false, path: '/'});
-// }
-//
-// // 与ag交互发生错误
+//  与服务端交互发生错误
 // event.on('agError', function (res, errHtmlMessage, errLogMessage, body, response, err) {
-//     normalLog.error(errLogMessage + ",AG返回:" + body + ",response:" + response + ",error:" + err);
 //     res.json({code: "-1", message: "服务器发生异常，请稍后再试"});
 //     return;
 // });
 //
 // app.post('/logout', function (req, res) {
-//     res.clearCookie('myPosToken');
 //     res.json({code: "0", message: "注销成功"});
 // });
 

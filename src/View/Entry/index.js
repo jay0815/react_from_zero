@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 // import { hashHistory } from 'react-router';
 import './index.less';
-import { demoSetState, change } from '../../Action/index';
+import { demoSetState, change, login } from '../../Action/index';
 
 
 class App extends Component {
@@ -19,11 +19,11 @@ class App extends Component {
 				<button
 					style={{ width: '80px' }}
 					onClick={() => {
-						console.log('stop');
-						this.props.change('stop');
+						console.log('login');
+						this.props.login();
 					}}
 				>
-					123
+					831
 				</button>
 				<button
 					className='button-style'
@@ -47,7 +47,7 @@ App.propTypes = {
 	// itemList: PropTypes.array.isRequired,
 	// fetchUser: PropTypes.func.isRequired,
 	change: PropTypes.func.isRequired,
-	// demoSetState: PropTypes.func.isRequired
+	login: PropTypes.func.isRequired
 };
 function mapStateToProps (state) {
 	return {
@@ -56,6 +56,7 @@ function mapStateToProps (state) {
 }
 function mapDispatchToProps (dispatch) {
 	return {
+		login: bindActionCreators(login, dispatch),
 		change: bindActionCreators(change, dispatch),
 		demoSetState: bindActionCreators(demoSetState, dispatch),
 	};
