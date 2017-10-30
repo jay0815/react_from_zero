@@ -5,10 +5,10 @@ import { reducerCreators } from '../Util/index';
 // import { createReducer } from 'redux-immutablejs';
 
 const initialState = {
-	isAuth: false,
+	isAuth: true,
 	stop: false,
 	start: false,
-	word: 321
+	word: 'qwer',
 };
 
 export default reducerCreators(initialState, {

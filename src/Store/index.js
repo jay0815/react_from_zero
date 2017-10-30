@@ -14,6 +14,15 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // const state = Immutable.fromJS({});
 // 创建一个 Redux store 来以存放应用中所有的 state，应用中应有且仅有一个 store。
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk, afterApiMiddleware, createLogger())));
+
+
+if (module.hot) {
+	// Enable Webpack hot module replacement for reducers
+	module.hot.accept('../Reducer/index', () => {
+		const nextRootReducer = require('../Reducer/index').default;
+		store.replaceReducer(nextRootReducer);
+	});
+}
 // ---redux-saga---
 // const sagaMiddleware = createSagaMiddleware();
 // const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware,createLogger())));
