@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const config = require('./webpack.config-dev.js');
+const opn = require('opn');
 const express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
@@ -17,6 +18,12 @@ var URL = require('url');
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
 
+
+var _resolve;
+var readyPromise = new Promise(resolve => {
+  _resolve = resolve
+});
+
 // log4js.configure({
 //     appenders: [
 //         {type: 'console'},
@@ -33,8 +40,6 @@ app.set('view engine', 'html');
 //         normal: 'INFO'
 //     }
 // });
-console.log(config);
-
 
 log4js.configure({
     appenders: {
@@ -64,19 +69,26 @@ const isDeveloping = !isProduction;
 
 app.use(cookieParser());
 
+
 //通过localhost可以访问项目文件夹下的所有文件，等于动态为每个静态文件创建了路由
 const compiler = webpack(config);
 app.use(express.static(path.join(__dirname, '/dist')))
-app.use(require('webpack-dev-middleware')(compiler, {
+var devMiddleware = require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
-}));
-
+});
+app.use(devMiddleware);
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get(['/*'], function(req, res) {
-  res.sendFile(path.join(__dirname, '/dist/index.html'));
+devMiddleware.waitUntilValid(() => {
+  // when env is testing, don't need open it
+ 	opn('http://localhost:5000', {app: ['google chrome']});
+  	_resolve()
 });
+
+// app.get(['/*'], function(req, res) {
+//   res.sendFile(path.join(__dirname, '/dist/index.html'));
+// });
 
 // 登录逻辑
 app.post('/login', jsonParser, function (req, res) {
@@ -165,7 +177,6 @@ let event = new EventEmitter();
 //     res.json({code: "-1", message: "服务器发生异常,请稍后再试"});
 //     return;
 // });
-
 
 app.listen(5000, function(err) {
   if (err) {
