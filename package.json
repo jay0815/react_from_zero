@@ -9,7 +9,8 @@
     "build:webpack": "webpack --config webpack.config.babel.js --progress --colors",
     "build": "npm-run-all clean build:webpack",
     "build-dev:webpack": "export NODE_ENV=development && webpack --config webpack.config-dev.js --watch --progress --colors",
-    "build-dev": "npm-run-all clean build-dev:webpack"
+    "build-dev": "npm-run-all clean build-dev:webpack",
+	"start":"node server" 
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "jsonwebtoken": "^8.0.1",
     "key-mirror": "^1.0.1",
     "log4js": "^2.3.3",
+    "opn": "^5.1.0",
     "path": "^0.12.7",
     "prop-types": "^15.6.0",
     "qr-image": "^3.2.0",

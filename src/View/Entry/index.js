@@ -19,23 +19,21 @@ class App extends Component {
 				<button
 					style={{ width: '80px' }}
 					onClick={() => {
-						console.log('login');
-						this.props.login();
+						this.props.demoSetState();
 					}}
 				>
-					0o0o0o00o0
+					456
 				</button>
 				<button
 					className='button-style'
 					style={{ color: 'cornflowerblue' }}
 					onClick={() => {
-						console.log('start');
 						this.props.change('start');
 					}}
 				>
 					2333
 				</button>
-				<p>{this.props.isAuth ? 'hello,world' : 'no premission'}</p>
+				<p>{this.props.isAuth ? this.props.word : 'no premission'}</p>
 			</div>
 		);
 	}
@@ -46,19 +44,20 @@ App.propTypes = {
 	isAuth: PropTypes.bool.isRequired,
 	// itemList: PropTypes.array.isRequired,
 	// fetchUser: PropTypes.func.isRequired,
+	word: PropTypes.string.isRequired,
 	change: PropTypes.func.isRequired,
-	login: PropTypes.func.isRequired
+	demoSetState: PropTypes.func.isRequired
 };
 function mapStateToProps (state) {
 	return {
-		isAuth: state.App.isAuth
+		isAuth: state.App.isAuth,
+		word: state.App.word
 	};
 }
 function mapDispatchToProps (dispatch) {
 	return {
-		login: bindActionCreators(login, dispatch),
 		change: bindActionCreators(change, dispatch),
-		demoSetState: bindActionCreators(demoSetState, dispatch),
+		demoSetState: bindActionCreators(demoSetState, dispatch)
 	};
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
