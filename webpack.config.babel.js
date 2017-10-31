@@ -1,9 +1,15 @@
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import precss from 'precss';
-import autoprefixer from 'autoprefixer';
-import rucksackCss from 'rucksack-css';
-import ConsoleLogOnBuildWebpackPlugin from './normal';
+// import webpack from 'webpack';
+// import HtmlWebpackPlugin from 'html-webpack-plugin';
+// import precss from 'precss';
+// import autoprefixer from 'autoprefixer';
+// import rucksackCss from 'rucksack-css';
+// import ConsoleLogOnBuildWebpackPlugin from './normal';
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var precss = require('precss');
+var autoprefixer = require('autoprefixer');
+var rucksackCss = require('rucksack-css');
+var ConsoleLogOnBuildWebpackPlugin = require('./normal');
 
 const path = require('path');
 

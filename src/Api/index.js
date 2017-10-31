@@ -1,13 +1,13 @@
 import Api from './api';
 // import fetchApi from './fetchApi';
 
-function objBaseURI() {
+function objBaseURI () {
 	switch (process.env.NODE_ENV) {
-		case "test": return "testObjBaseURI";
-		case "development": return "developmentObjBaseURI";
-        case "staging": return "stagingObjBaseURI";
-        case "production": return "productionObjBaseURI";
-        default: return "defaultObjBaseURI";
+	case "test": return "testObjBaseURI";
+	case "development": return "developmentObjBaseURI";
+	case "staging": return "stagingObjBaseURI";
+	case "production": return "productionObjBaseURI";
+	default: return "defaultObjBaseURI";
 	}
 }
 

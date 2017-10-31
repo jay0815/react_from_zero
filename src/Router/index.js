@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // // 同步加载
 import App from '../View/Entry'; // 首页组件
 import Home from '../View/Home'; // 首页组件
-
+import Login from '../View/Login'; // 登录页组件
 
 // 异步加载
 /*eslint-disable*/
@@ -28,6 +28,7 @@ const RouterConfig = () => (
 	<Router>
 		<div>
 			<Route exact path='/' component={App} />
+			<Route exact path='/login' component={Login} />
 			<Route exact path='/home' component={Home} />
 		</div>
 	</Router>

@@ -1,8 +1,4 @@
  {
-	 "presets": [
-		 "react",
-		 "stage-2",
-	 ],
 	 "plugins": [
 		 [
 			 "transform-runtime",
@@ -21,14 +17,18 @@
 		        	"targets": {
 		          		"browsers": ["last 2 versions", "ie > 7"]
 		  			}
-		      	}]
+		      	}],
+				"react",
+	   		 	"stage-1"
 			]
 		},
 		"development": {
 			"presets": [
 				["env", {
 					"modules": false
-				}]
+				}],
+				"react",
+	   		 	"stage-1"
 			],
 			"plugins": ["react-hot-loader/babel"]
 		}

@@ -72,11 +72,14 @@ app.use(cookieParser());
 
 //通过localhost可以访问项目文件夹下的所有文件，等于动态为每个静态文件创建了路由
 const compiler = webpack(config);
-app.use(express.static(path.join(__dirname, '/dist')))
+// app.use(express.static(path.join(__dirname, '/dist')))
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
 });
+
+app.use(require('connect-history-api-fallback')());
+
 app.use(devMiddleware);
 app.use(require('webpack-hot-middleware')(compiler));
 
@@ -86,7 +89,11 @@ devMiddleware.waitUntilValid(() => {
   	_resolve()
 });
 
-// app.get(['/*'], function(req, res) {
+
+// app.get(['/*'], function (req, res) {
+// 	// console.log('req',req.originalUrl);
+// 	// res.redirect(req.originalUrl);
+// 	// return;
 //   res.sendFile(path.join(__dirname, '/dist/index.html'));
 // });
 

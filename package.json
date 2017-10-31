@@ -10,7 +10,7 @@
     "build": "npm-run-all clean build:webpack",
     "build-dev:webpack": "export NODE_ENV=development && webpack --config webpack.config-dev.js --watch --progress --colors",
     "build-dev": "npm-run-all clean build-dev:webpack",
-	"start":"node server" 
+    "start": "node server"
   },
   "repository": {
     "type": "git",
@@ -72,7 +72,8 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "connect-history-api-fallback": "^1.4.0",
     "css-loader": "^0.28.7",
     "less": "^2.7.3",
     "less-loader": "^4.0.5",

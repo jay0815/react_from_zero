@@ -11,6 +11,9 @@ import { demoSetState, change, login } from '../../Action/index';
 class App extends Component {
 	componentWillMount () {
 	}
+	// handleChange = (value) => {
+	// 	console.log('passwordChange', value);
+	// }
 	render () {
 		// console.log(this.props.demoSetState());
 		return (
@@ -20,6 +23,7 @@ class App extends Component {
 					style={{ width: '80px' }}
 					onClick={() => {
 						this.props.demoSetState();
+						// this.handleChange();
 					}}
 				>
 					456
@@ -48,16 +52,16 @@ App.propTypes = {
 	change: PropTypes.func.isRequired,
 	demoSetState: PropTypes.func.isRequired
 };
-function mapStateToProps (state) {
+const mapStateToProps = (state) => {
 	return {
 		isAuth: state.App.isAuth,
 		word: state.App.word
 	};
-}
-function mapDispatchToProps (dispatch) {
+};
+const mapDispatchToProps = (dispatch) => {
 	return {
 		change: bindActionCreators(change, dispatch),
 		demoSetState: bindActionCreators(demoSetState, dispatch)
 	};
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(App);
