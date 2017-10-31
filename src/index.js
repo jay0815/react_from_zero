@@ -11,6 +11,7 @@ import Redbox from 'redbox-react';
 // store.subscribe(() => {
 // 	console.log(store.getState());
 // });
+
 const render = (Component) => {
 	ReactDOM.render(
 		<AppContainer>

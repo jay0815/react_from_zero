@@ -33,6 +33,7 @@ module.exports = {
 			'react',
 			'react-dom',
 			'react-router-dom',
+			'react-router-redux',
 			'redux',
 			'redux-logger',
 			// 'redux-saga',
