@@ -1,16 +1,16 @@
-# react_from_zero
-## this is a react falsework demo
+# this is a react falsework demo
 > react v15(future will be v16) + redux + react-router v4 + fetch + redux-thunk + react-hot-loader + nodejs + es6 + webpack3
 
-1. >集成热加载（react-hot-loader）:
-	当在babelrc有配置 react-hot-loader/babel时，不要在webpack的js加载器中再使用
-	react-hot-loader/webpack,否则将导致source-map模式无法使用（如果你是使用的eval模式，请忽略本条记录）
-	```
-	npm install --save react-hot-loader
-	```
+### 2017.10.28
+- 根据redux官网demo 自定义编译界面年月显示
 
-2. >集成自动刷新（webpack-hot-middleware）:
-	webpack-hot-middleware使用时放在需要使用热更新的文件处，这里我加入了reload=true参数，意思是当webpack有动态编译时更新页面。 更多详细配置参考:https://github.com/glenjamin/webpack-hot-middleware
-	```
-	npm install --save-dev webpack-hot-middleware
-	```
+### 2017.10.30
+- npm start 支持 dom 与 redux同时热加载
+- 加入编译后浏览器自动开启的功能
+- 因为transform-class-properties报错调整了babel结构
+- （babel v6.x 中 env判断追加presets选项时,自定义的env会变成最后加载，产		生transform-class-properties报错。为了便于在实际生产环境中使用，因此采用了一个不够优雅的配置。
+	https://github.com/babel/babel/issues/6604 这个issue 中有人提到了相同问题，babel作者表示会在 v7中加入 .babelrc.js 的引入配置）
+- 对前几天加入的postcss-loader 进行了验证，应该可以解决浏览器显示的兼容的问题？！
+
+### 2017.10.31
+- npm start 修复浏览器路由跳转bug
