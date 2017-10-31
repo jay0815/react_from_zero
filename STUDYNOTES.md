@@ -12,7 +12,11 @@
 	```
 	npm install --save-dev webpack-hot-middleware
 	```
-3. >derServer集成(connect-history-api-fallback)
+3. >集成dev-middleware完善自动刷新功能（webpack-dev-middleware）:
+	```
+	npm install --save-dev webpack-dev-middleware
+	```
+4. >derServer集成(connect-history-api-fallback)
 	因为npm start的原理是在node中使用webpack-dev-middleware加载在内存中热编译的文件。当浏览器地址发生改变时，会被node拦截当做一次请求。
 	但是实际是没有生成静态文件的，无法使用重定向。
 	所以在node中集成 connect-history-api-fallback。对node请求进行区分，对请求直接修改请头内容。

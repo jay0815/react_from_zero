@@ -14,3 +14,4 @@
 
 ### 2017.10.31
 - npm start 修复浏览器路由跳转bug
+  router问题 https://segmentfault.com/q/1010000008219479
