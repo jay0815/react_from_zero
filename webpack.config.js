@@ -1,3 +1,4 @@
+const path = require('path');
 // import webpack from 'webpack';
 // import HtmlWebpackPlugin from 'html-webpack-plugin';
 // import precss from 'precss';
@@ -11,13 +12,11 @@ var autoprefixer = require('autoprefixer');
 var rucksackCss = require('rucksack-css');
 var ConsoleLogOnBuildWebpackPlugin = require('./normal');
 
-const path = require('path');
 
 const svgSpriteDirs = [
 	// require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
 	path.resolve(__dirname, 'src/Svg'), // 业务代码本地私有 svg 存放目录
 ];
-
 // import px2rem from 'postcss-pxtorem';
 // var webpack = require('webpack');
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -115,6 +114,13 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.js$/,
+				exclude: /(node_modules)/,
+				use: [{
+					loader: 'babel-loader'
+				}]
+			},
+			{
 				test: /\.less$/,
 				use: [{
 					loader: 'style-loader' // creates style nodes from JS strings
@@ -143,13 +149,6 @@ module.exports = {
 				test: /\.(gif|jpe?g|png|ico)$/,
 				use: [{
 					loader: 'url-loader?limit=10000'
-				}]
-			},
-			{
-				test: /\.js$/,
-				exclude: /(node_modules)/,
-				use: [{
-					loader: 'babel-loader'
 				}]
 			},
 			{

@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
+import { Router, Route, Switch } from 'react-router-dom';
 import Bundle from './../Bundle';
 // bundle模型用来异步加载组件
 // import Bundle from '../Bundle';
@@ -27,13 +26,11 @@ const createComponent = component => props => (
 );
 // 路由配置
 const RouterConfig = () => (
-		<Router>
-			<div>
+		<div>
 				<Route exact path='/' component={App} />
 				<Route exact path='/login' component={ createComponent(Login)} />
 				<Route exact path='/home' component={ createComponent(Home)} />
-			</div>
-		</Router>
+		</div>
 );
 // 导出
 export default RouterConfig;
