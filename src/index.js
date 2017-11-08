@@ -6,16 +6,21 @@ import { Provider } from 'react-redux';
 import RouterConfig from './Router'; // 路由配置
 import store from './Store'; // 引入Store
 import Redbox from 'redbox-react';
-// const store = configureStore();
+import { ConnectedRouter } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
+const history = createHistory();
 // 订阅state改变
-// store.subscribe(() => {
-// 	console.log(store.getState());
-// });
+store.subscribe(() => {
+	console.log(store.getState());
+});
+
 const render = (Component) => {
 	ReactDOM.render(
 		<AppContainer>
 			<Provider store={store}>
-				<Component />
+				<ConnectedRouter history={history}>
+					<Component />
+				</ConnectedRouter>
 			</Provider>
 		</AppContainer>, document.getElementById('root'));
 };

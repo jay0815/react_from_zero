@@ -1,6 +1,3 @@
-const webpack = require('webpack');
-const config = require('./webpack.config-dev.js');
-const opn = require('opn');
 const express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
@@ -10,36 +7,13 @@ const express = require('express'),
     request = require('request'),
     path = require('path'),
     log4js = require("log4js"),
-    ejs = require('ejs'),
     EventEmitter = require('events').EventEmitter;
 var jsonParser = bodyParser.json();
-var http = require('http');
-var URL = require('url');
-app.engine('.html', ejs.__express);
-app.set('view engine', 'html');
-
 
 var _resolve;
 var readyPromise = new Promise(resolve => {
   _resolve = resolve
 });
-
-// log4js.configure({
-//     appenders: [
-//         {type: 'console'},
-//         {
-//             type: 'dateFile',
-//             filename: 'logs/normal.log',
-//             layout: {type: 'basic'},
-//             pattern: '.yyyy-MM-dd',
-//             alwaysIncludePattern: true,
-//             category: 'normal'
-//         }
-//     ],
-//     levels: {
-//         normal: 'INFO'
-//     }
-// });
 
 log4js.configure({
     appenders: {
@@ -59,7 +33,7 @@ log4js.configure({
 
 const normalLog = log4js.getLogger("normal");
 
-// app.use(log4js.connectLogger(normalLog, {level: 'trace', format: ':method :url'}));
+app.use(log4js.connectLogger(normalLog, {level: 'trace', format: ':method :url'}));
 
 let env = process.env.NODE_ENV;
 
@@ -71,24 +45,11 @@ app.use(cookieParser());
 
 
 //通过localhost可以访问项目文件夹下的所有文件，等于动态为每个静态文件创建了路由
-const compiler = webpack(config);
 app.use(express.static(path.join(__dirname, '/dist')))
-var devMiddleware = require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath
-});
-app.use(devMiddleware);
-app.use(require('webpack-hot-middleware')(compiler));
 
-devMiddleware.waitUntilValid(() => {
-  // when env is testing, don't need open it
- 	opn('http://localhost:5000', {app: ['google chrome']});
-  	_resolve()
+app.get(['/*'], function (req, res) {
+  res.sendFile(path.join(__dirname, '/dist/index.html'));
 });
-
-// app.get(['/*'], function(req, res) {
-//   res.sendFile(path.join(__dirname, '/dist/index.html'));
-// });
 
 // 登录逻辑
 app.post('/login', jsonParser, function (req, res) {

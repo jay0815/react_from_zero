@@ -1,17 +1,22 @@
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import precss from 'precss';
-import autoprefixer from 'autoprefixer';
-import rucksackCss from 'rucksack-css';
-import ConsoleLogOnBuildWebpackPlugin from './normal';
-
 const path = require('path');
+// import webpack from 'webpack';
+// import HtmlWebpackPlugin from 'html-webpack-plugin';
+// import precss from 'precss';
+// import autoprefixer from 'autoprefixer';
+// import rucksackCss from 'rucksack-css';
+// import ConsoleLogOnBuildWebpackPlugin from './normal';
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var precss = require('precss');
+var autoprefixer = require('autoprefixer');
+var rucksackCss = require('rucksack-css');
+var ConsoleLogOnBuildWebpackPlugin = require('./normal');
+
 
 const svgSpriteDirs = [
 	// require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
 	path.resolve(__dirname, 'src/Svg'), // 业务代码本地私有 svg 存放目录
 ];
-
 // import px2rem from 'postcss-pxtorem';
 // var webpack = require('webpack');
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -39,7 +44,11 @@ module.exports = {
 		// 输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它.
 		publicPath: '/',
 		// 模板、样式、脚本、图片等资源对应的server上的路径
-		filename: 'index.js'
+		// filename: 'index.js',
+
+		filename: '[name].[chunkhash].js',
+
+		chunkFilename: '[name].[chunkhash].js',
 		// 命名生成的JS
 	},
 	plugins: [
@@ -54,7 +63,7 @@ module.exports = {
 			// favicon路径
 			inject: 'body',
 			// js插入的位置，true/'head'  false/'body'
-			chunks: ['vendor', 'index'],
+			// chunks: ['vendor', 'index'],
 			// 指定要排除的chunk，根据entry的key配置，不配置就会过滤所有页面的资源
 			//  chunks: ['vendor', 'index' ],
 			// 指定引入的chunk，根据entry的key配置，不配置就会引入所有页面的资源
@@ -105,6 +114,13 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /\.js$/,
+				exclude: /(node_modules)/,
+				use: [{
+					loader: 'babel-loader'
+				}]
+			},
+			{
 				test: /\.less$/,
 				use: [{
 					loader: 'style-loader' // creates style nodes from JS strings
@@ -133,13 +149,6 @@ module.exports = {
 				test: /\.(gif|jpe?g|png|ico)$/,
 				use: [{
 					loader: 'url-loader?limit=10000'
-				}]
-			},
-			{
-				test: /\.js$/,
-				exclude: /(node_modules)/,
-				use: [{
-					loader: 'babel-loader'
 				}]
 			},
 			{

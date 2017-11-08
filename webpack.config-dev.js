@@ -33,6 +33,7 @@ module.exports = {
 			'react',
 			'react-dom',
 			'react-router-dom',
+			'react-router-redux',
 			'redux',
 			'redux-logger',
 			// 'redux-saga',
@@ -154,9 +155,8 @@ module.exports = {
 			},
 			{
 				test: /\.(svg).*$/i,
-				include: svgSpriteDirs, // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
 				use: [{
-					loader: 'svg-sprite'
+					loader: 'svg-url-loader'
 				}]
 			}
 		]
