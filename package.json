@@ -29,6 +29,8 @@
   },
   "homepage": "https://github.com/jay0815/react_from_zero#readme",
   "dependencies": {
+    "antd": "^2.13.9",
+    "babel-plugin-import": "^1.6.2",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.1",
@@ -96,5 +98,6 @@
     "webpack": "^3.8.1",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2"
-  }
+	},
+	"theme": "./theme.js"
 }
