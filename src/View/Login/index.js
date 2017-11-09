@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import { Layout } from 'antd';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { login, change } from '../../Action/login';
+
+const {
+	Header, Footer, Sider, Content
+} = Layout;
 
 
 class Login extends Component {
@@ -16,34 +21,38 @@ class Login extends Component {
 		// sessionStorage.setItem('jackInfo', JSON.stringify(info));
 	}
 	nameChange = (value) => {
-		console.log('nameChange', value);
 		this.props.change({ name: value });
 	}
 	passwordChange = (value) => {
-		console.log('passwordChange', value);
 		this.props.change({ password: value });
 	}
 	render () {
 		return (
 			<div>
-				<p>
-					<label htmlFor='name'>name</label>
-					<input type='text' name='name' id='name' value={this.props.name} onChange={this.nameChange} />
-				</p>
-				<p>
-					<label htmlFor='password'>password</label>
-					<input type='password' name='password' id='password' value={this.props.password} onChange={this.passwordChange} />
-				</p>
-				<button
-					onClick={() => {
-						this.props.login();
-						// console.log('start');
-						// this.props.('start');
-					}}
-					disabled={this.props.name !== '' && this.props.password !== ''}
-				>
-					entry
-				</button>
+				<Layout>
+					<Header>Header</Header>
+					<Content>
+						<p>
+							<label htmlFor='name'>name</label>
+							<input type='text' name='name' id='name' value={this.props.name} onChange={this.nameChange} />
+						</p>
+						<p>
+							<label htmlFor='password'>password</label>
+							<input type='password' name='password' id='password' value={this.props.password} onChange={this.passwordChange} />
+						</p>
+						<button
+							onClick={() => {
+								this.props.login();
+							// console.log('start');
+							// this.props.('start');
+							}}
+							disabled={this.props.name !== '' && this.props.password !== ''}
+						>
+						entry
+						</button>
+					</Content>
+					<Footer>Footer</Footer>
+				</Layout>
 			</div>
 		);
 	}

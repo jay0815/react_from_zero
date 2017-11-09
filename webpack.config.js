@@ -103,6 +103,7 @@ module.exports = {
 		// 改为production。最直观的就是没有所有的debug相关的东西，体积会减少很多
 
 		new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
+		new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.LoaderOptionsPlugin({
 			debug: false
 		})
@@ -153,9 +154,12 @@ module.exports = {
 			},
 			{
 				test: /\.(svg).*$/i,
-				include: svgSpriteDirs, // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
+				// include: svgSpriteDirs, // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
 				use: [{
-					loader: 'svg-sprite'
+					loader: 'url-loader?limit=1',
+					options: {
+						name:'[path][name].[ext]'
+					}
 				}]
 			}
 		]

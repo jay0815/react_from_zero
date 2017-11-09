@@ -123,6 +123,7 @@ module.exports = {
 			},
 			{
 				test: /\.less$/,
+				exclude: /node_modules/,
 				use: [{
 					loader: 'style-loader' // creates style nodes from JS strings
 				}, {
@@ -140,6 +141,15 @@ module.exports = {
 					loader: 'less-loader' // compiles Less to CSS
 				},
 				]
+			},
+			{
+				test: /\.less$/,
+				use: [
+					'style-loader',
+					'css-loader',
+					'less-loader',
+				],
+				include: /node_modules/,
 			},
 			{
 				test: /\.(otf|eot|ttf|woff|woff2).*$/,
@@ -160,7 +170,7 @@ module.exports = {
 				}]
 			}
 		]
-	},
+	}
 //     postcss: function () {
 //   return [
 //     require('precss'),
