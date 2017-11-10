@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { login, change } from '../../Action/login';
+import './index.less';
+import adminIcon from '../../Svg/adminIcon.svg';
 
 const {
 	Header, Footer, Sider, Content
@@ -28,31 +30,31 @@ class Login extends Component {
 	}
 	render () {
 		return (
-			<div>
-				<Layout>
-					<Header>Header</Header>
-					<Content>
-						<p>
-							<label htmlFor='name'>name</label>
-							<input type='text' name='name' id='name' value={this.props.name} onChange={this.nameChange} />
-						</p>
-						<p>
-							<label htmlFor='password'>password</label>
-							<input type='password' name='password' id='password' value={this.props.password} onChange={this.passwordChange} />
-						</p>
-						<button
-							onClick={() => {
-								this.props.login();
-							// console.log('start');
-							// this.props.('start');
-							}}
-							disabled={this.props.name !== '' && this.props.password !== ''}
-						>
-						entry
-						</button>
-					</Content>
-					<Footer>Footer</Footer>
-				</Layout>
+			<div className='login-style' >
+				<div className='top-icon'>
+					<div className='top-header'>
+						<NavLink to='/'>
+							<img alt='' className='top-logo' src={adminIcon} />
+							<span className='top-title'>Jack Qian</span>
+						</NavLink>
+					</div>
+				</div>
+				<p>
+					<label htmlFor='name'>name</label>
+					<input type='text' name='name' id='name' value={this.props.name} onChange={this.nameChange} />
+				</p>
+				<p>
+					<label htmlFor='password'>password</label>
+					<input type='password' name='password' id='password' value={this.props.password} onChange={this.passwordChange} />
+				</p>
+				<button
+					onClick={() => {
+						this.props.login();
+					}}
+					disabled={this.props.name !== '' && this.props.password !== ''}
+				>
+				entry
+				</button>
 			</div>
 		);
 	}
