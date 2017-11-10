@@ -36,10 +36,10 @@ if (module.hot) {
 	*/
 	const orgError = console.error; // eslint-disable-line no-console
 	console.error = (message) => { // eslint-disable-line no-console
-		if (message && message.indexOf('You cannot change <Router routes>;') === -1) {
-			// Log the error as normally
-			orgError.apply(console, [message]);
-		}
+		// if (message && message.indexOf('You cannot change <Router routes>;') === -1) {
+		// 	// Log the error as normally
+		// 	orgError.apply(console, [message]);
+		// }
 	};
 	module.hot.accept('./Router', () => { render(RouterConfig); });
 }
