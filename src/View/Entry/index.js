@@ -2,44 +2,47 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-// import { hashHistory } from 'react-router';
+import { NavLink, withRouter } from 'react-router-dom';
+import { Layout, Affix, Button } from 'antd';
+import QueueAnim from 'rc-queue-anim';
 import './index.less';
 import { demoSetState, change, login } from '../../Action/index';
+
+const {
+	Header, Footer, Content, Sider
+} = Layout;
 
 
 class App extends Component {
 	componentWillMount () {
 	}
-	// handleChange = (value) => {
-	// 	console.log('passwordChange', value);
-	// }
 	render () {
-		// console.log(this.props.demoSetState());
 		return (
 			<div className='entry-body'>
-				<NavLink to='/Home'>Go Home</NavLink>
-				<div className='div-body'>
-					<button
-						style={{ width: '80px' }}
-						onClick={() => {
-							this.props.demoSetState();
-							// this.handleChange();
-						}}
-					>
-						456
-					</button>
-					<button
-						className='button-style'
-						style={{ color: 'cornflowerblue' }}
-						onClick={() => {
-							this.props.change('start');
-						}}
-					>
-						2333
-					</button>
-				</div>
-				<p>{this.props.isAuth ? this.props.word : 'no premission'}</p>
+				<Layout>
+					<Sider>
+						<div>
+							侧边栏
+						</div>
+					</Sider>
+					<QueueAnim delay={300}>
+						<Layout>
+							<Header className='app-header' />
+							<Content >
+								<div>123</div>
+								<Affix >
+									<Button type='primary'
+										onClick={() => {
+										// this.setState({ show : false });
+										// console.log(this.props.history);
+										this.props.history.push('/');
+									}}>top</Button>
+								</Affix>
+							</Content>
+							<Footer />
+						</Layout>
+					</QueueAnim>
+				</Layout>
 			</div>
 		);
 	}
@@ -47,23 +50,23 @@ class App extends Component {
 App.propTypes = {
 	// cancelInfo: PropTypes.object,
 	// memo: PropTypes.string.isRequired,
-	isAuth: PropTypes.bool.isRequired,
+	// isAuth: PropTypes.bool.isRequired,
 	// itemList: PropTypes.array.isRequired,
 	// fetchUser: PropTypes.func.isRequired,
-	word: PropTypes.string.isRequired,
-	change: PropTypes.func.isRequired,
-	demoSetState: PropTypes.func.isRequired
+	// word: PropTypes.string.isRequired,
+	// change: PropTypes.func.isRequired,
+	// demoSetState: PropTypes.func.isRequired
 };
 const mapStateToProps = (state) => {
 	return {
-		isAuth: state.App.isAuth,
-		word: state.App.word
+		// isAuth: state.App.isAuth,
+		// word: state.App.word
 	};
 };
 const mapDispatchToProps = (dispatch) => {
 	return {
-		change: bindActionCreators(change, dispatch),
-		demoSetState: bindActionCreators(demoSetState, dispatch)
+		// change: bindActionCreators(change, dispatch),
+		// demoSetState: bindActionCreators(demoSetState, dispatch)
 	};
 };
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

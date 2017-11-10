@@ -8,12 +8,12 @@ import store from './Store'; // 引入Store
 import Redbox from 'redbox-react';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
-const history = createHistory();
+const history = createHistory()
+
 // 订阅state改变
 store.subscribe(() => {
 	console.log(store.getState());
 });
-
 const render = (Component) => {
 	ReactDOM.render(
 		<AppContainer>

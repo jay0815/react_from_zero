@@ -2,54 +2,68 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
+import QueueAnim from 'rc-queue-anim';
 import { demoSetState, change } from '../../Action/index';
-
+import './index.less';
 
 class Home extends Component {
+	state = {
+		show: false
+	}
 	componentWillMount () {
+		console.log('componentWillMount');
+		this.setState({ show : true});
+	}
+	componentWillUnmount () {
+		console.log('componentWillUnmount');
 	}
 	render () {
+		console.log(this.props);
 		return (
-			<div>
-				<NavLink to='/'>Go Back</NavLink>
-				<button onClick={() => {
-					// console.log('stop');
-					this.props.change('stop');
-				}}
-				>
-					my home
-				</button>
-				<button onClick={() => {
-					// console.log('start');
-					// this.props.('start');
-				}}
-				>
-					good
-				</button>
-				<p>{this.props.isAuth ? 'hello,world' : 'this is my home'}</p>
+			<div className='login-style' >
+				<div className='top-icon'>
+					<QueueAnim type={['right', 'left']} ease={['easeOutQuart', 'easeInOutQuart']}>
+						{
+							this.state.show ? [
+							<div className='top-header' key='logo'>
+								<NavLink to='/App'>
+									<img alt='' className='top-logo' src={require('../../Svg/adminIcon.svg')} />
+									<span className='top-title'>Jack Qian`s BLOG</span>
+								</NavLink>
+							</div>,
+							<p className='top-desc' key='title'>Jack Qian 一个走在全栈路上的小小程序猿</p>,
+							<div className='bottom-title' key='bottom'>
+								<div>
+									<h3>The Future Belongs To Us</h3>
+									<div className='bottom-title-line'>
+										<div className='bottom-title-line-animation'></div>
+									</div>
+								</div>
+							</div>] : null
+						}
+					</QueueAnim>
+				</div>
 			</div>
 		);
 	}
 }
 Home.propTypes = {
+	history: PropTypes.object
 	// cancelInfo: PropTypes.object,
 	// memo: PropTypes.string.isRequired,
-	isAuth: PropTypes.bool.isRequired,
 	// itemList: PropTypes.array.isRequired,
 	// fetchUser: PropTypes.func.isRequired,
-	change: PropTypes.func.isRequired,
 	// demoSetState: PropTypes.func.isRequired
 };
 function mapStateToProps (state) {
 	return {
-		isAuth: state.App.isAuth
+		// isAuth: state.App.isAuth
 	};
 }
 function mapDispatchToProps (dispatch) {
 	return {
-		change: bindActionCreators(change, dispatch),
-		// demoSetState: bindActionCreators(demoSetState, dispatch),
+		// change: bindActionCreators(change, dispatch),
 	};
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
