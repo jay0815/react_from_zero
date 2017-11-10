@@ -4,19 +4,19 @@
 // import autoprefixer from 'autoprefixer';
 // import rucksackCss from 'rucksack-css';
 // import ConsoleLogOnBuildWebpackPlugin from './normal';
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var precss = require('precss');
-var autoprefixer = require('autoprefixer');
-var rucksackCss = require('rucksack-css');
-var ConsoleLogOnBuildWebpackPlugin = require('./normal');
-
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const precss = require('precss');
+const autoprefixer = require('autoprefixer');
+const rucksackCss = require('rucksack-css');
+const ConsoleLogOnBuildWebpackPlugin = require('./normal');
 const path = require('path');
-
-const svgSpriteDirs = [
-	// require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
-	path.resolve(__dirname, 'src/Svg'), // 业务代码本地私有 svg 存放目录
-];
+//
+// const svgSpriteDirs = [
+// 	// require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
+// 	path.resolve(__dirname, 'src/Svg'), // 业务代码本地私有 svg 存放目录
+// ];
+const theme = require('./theme.js');
 
 module.exports = {
 	// debug: true, loaders 的 debug 模式将在 webpack 3 或后续版本中取消。
@@ -26,7 +26,7 @@ module.exports = {
 		index: [
 			'babel-polyfill',
 			'react-hot-loader/patch',
-			'webpack-hot-middleware/client?reload=true', //看上面
+			'webpack-hot-middleware/client?reload=true', // 看上面
 			path.resolve(__dirname, 'src/index')
 		],
 		vendor: [
@@ -138,16 +138,25 @@ module.exports = {
 					}
 				},
 				{
-					loader: 'less-loader' // compiles Less to CSS
+					loader: 'less-loader'// compiles Less to CSS
 				},
 				]
 			},
 			{
 				test: /\.less$/,
 				use: [
-					'style-loader',
-					'css-loader',
-					'less-loader',
+					{
+						loader: 'style-loader' // creates style nodes from JS strings
+					}, {
+						loader: 'css-loader' // translates CSS into CommonJS
+					},
+					{
+						loader: 'less-loader',// compiles Less to CSS
+						options: {
+							sourceMap: true,
+							modifyVars : theme
+						}
+					}
 				],
 				include: /node_modules/,
 			},
