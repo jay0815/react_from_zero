@@ -6,41 +6,39 @@ import { NavLink, withRouter } from 'react-router-dom';
 import QueueAnim from 'rc-queue-anim';
 import { demoSetState, change } from '../../Action/index';
 import './index.less';
+import svgIcon from '../../Svg/adminIcon.svg';
 
 class Home extends Component {
 	state = {
 		show: false
 	}
 	componentWillMount () {
-		console.log('componentWillMount');
-		this.setState({ show : true});
+		this.setState({ show: true });
 	}
 	componentWillUnmount () {
-		console.log('componentWillUnmount');
 	}
 	render () {
-		console.log(this.props);
 		return (
 			<div className='login-style' >
 				<div className='top-icon'>
 					<QueueAnim type={['right', 'left']} ease={['easeOutQuart', 'easeInOutQuart']}>
 						{
 							this.state.show ? [
-							<div className='top-header' key='logo'>
-								<NavLink to='/App'>
-									<img alt='' className='top-logo' src={require('../../Svg/adminIcon.svg')} />
-									<span className='top-title'>Jack Qian`s BLOG</span>
-								</NavLink>
-							</div>,
-							<p className='top-desc' key='title'>Jack Qian 一个走在全栈路上的小小程序猿</p>,
-							<div className='bottom-title' key='bottom'>
-								<div>
-									<h3>The Future Belongs To Us</h3>
-									<div className='bottom-title-line'>
-										<div className='bottom-title-line-animation'></div>
+								<div className='top-header' key='logo'>
+									<NavLink to='/Entry'>
+										<img alt='' className='top-logo' src={svgIcon} />
+										<span className='top-title'>Jack Qian`s BLOG</span>
+									</NavLink>
+								</div>,
+								<p className='top-desc' key='title'>Jack Qian 一个走在全栈路上的小小程序猿</p>,
+								<div className='bottom-title' key='bottom'>
+									<div>
+										<h3>The Future Belongs To Us</h3>
+										<div className='bottom-title-line'>
+											<div className='bottom-title-line-animation'></div>
+										</div>
 									</div>
-								</div>
-							</div>] : null
+								</div>] : null
 						}
 					</QueueAnim>
 				</div>
@@ -49,7 +47,7 @@ class Home extends Component {
 	}
 }
 Home.propTypes = {
-	history: PropTypes.object
+	// history: PropTypes.object
 	// cancelInfo: PropTypes.object,
 	// memo: PropTypes.string.isRequired,
 	// itemList: PropTypes.array.isRequired,

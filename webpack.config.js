@@ -5,13 +5,14 @@ const path = require('path');
 // import autoprefixer from 'autoprefixer';
 // import rucksackCss from 'rucksack-css';
 // import ConsoleLogOnBuildWebpackPlugin from './normal';
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var precss = require('precss');
-var autoprefixer = require('autoprefixer');
-var rucksackCss = require('rucksack-css');
-var ConsoleLogOnBuildWebpackPlugin = require('./normal');
-
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const precss = require('precss');
+const autoprefixer = require('autoprefixer');
+const rucksackCss = require('rucksack-css');
+const ConsoleLogOnBuildWebpackPlugin = require('./normal');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const theme = require('./theme.js');
 
 const svgSpriteDirs = [
 	// require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
@@ -91,7 +92,9 @@ module.exports = {
 				comments: false, // remove all comments
 			},
 			compressor: {
-				warnings: false
+				warnings: false,
+				drop_debugger: true,
+				drop_console: true
 			}
 		}),
 
@@ -104,6 +107,7 @@ module.exports = {
 
 		new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
 		new webpack.optimize.ModuleConcatenationPlugin(),
+		new ExtractTextPlugin({ filename: '[name].[chunkhash].css', allChunks: true, disable: false }),
 		new webpack.LoaderOptionsPlugin({
 			debug: false
 		})
@@ -121,24 +125,66 @@ module.exports = {
 					loader: 'babel-loader'
 				}]
 			},
+			// {
+			// 	test: /\.less$/,
+			// 	use: [{
+			// 		loader: 'style-loader' // creates style nodes from JS strings
+			// 	}, {
+			// 		loader: 'css-loader' // translates CSS into CommonJS
+			// 	},
+			// 	{
+			// 		loader: 'postcss-loader', // translates CSS into CommonJS
+			// 		options: {
+			// 			plugins: () => [autoprefixer({
+			// 				browsers: ['last 2 versions', 'ie>8']
+			// 			}), rucksackCss()],
+			// 		}
+			// 	},
+			// 	{
+			// 		loader: 'less-loader' // compiles Less to CSS
+			// 	}]
+			// },
 			{
 				test: /\.less$/,
-				use: [{
-					loader: 'style-loader' // creates style nodes from JS strings
-				}, {
-					loader: 'css-loader' // translates CSS into CommonJS
-				},
-				{
-					loader: 'postcss-loader', // translates CSS into CommonJS
-					options: {
-						plugins: () => [autoprefixer({
-							browsers: ['last 2 versions', 'ie>8']
-						}), rucksackCss()],
-					}
-				},
-				{
-					loader: 'less-loader' // compiles Less to CSS
-				}]
+				exclude: /node_modules/,
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: [
+						{
+							loader: 'css-loader' // translates CSS into CommonJS
+						},
+						{
+							loader: 'postcss-loader', // translates CSS into CommonJS
+							options: {
+								plugins: () => [autoprefixer({
+									browsers: ['last 2 versions', 'ie>8']
+								}), rucksackCss()],
+							}
+						},
+						{
+							loader: 'less-loader'// compiles Less to CSS
+						},
+					]
+				})
+			},
+			{
+				test: /\.less$/,
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: [
+						{
+							loader: 'css-loader' // translates CSS into CommonJS
+						},
+						{
+							loader: 'less-loader', // compiles Less to CSS
+							options: {
+								sourceMap: true,
+								modifyVars: theme
+							}
+						}
+					]
+				}),
+				include: /node_modules/,
 			},
 			{
 				test: /\.(otf|eot|ttf|woff|woff2).*$/,
@@ -158,7 +204,7 @@ module.exports = {
 				use: [{
 					loader: 'url-loader?limit=1',
 					options: {
-						name:'[path][name].[ext]'
+						name: '[path][name].[ext]'
 					}
 				}]
 			}
