@@ -10,7 +10,8 @@
     "build": "npm-run-all clean build:webpack",
     "build-dev:webpack": "export NODE_ENV=development && webpack --config webpack.config-dev.js --watch --progress --colors",
     "build-dev": "npm-run-all clean build-dev:webpack",
-    "start": "node server"
+    "start": "node server",
+    "lint:style": "stylelint \"src/**/*.less\" --syntax less"
   },
   "repository": {
     "type": "git",
@@ -94,6 +95,8 @@
     "redux-devtools": "^3.4.0",
     "rimraf": "^2.6.2",
     "style-loader": "^0.18.2",
+    "stylelint": "^8.2.0",
+    "stylelint-config-standard": "^17.0.0",
     "svg-url-loader": "^2.3.0",
     "url-loader": "^0.5.9",
     "webpack-dev-middleware": "^1.12.0",
