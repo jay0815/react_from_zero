@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { NavLink, withRouter, Route, Switch } from 'react-router-dom';
-import { Layout, Affix, Button, Menu } from 'antd';
+import { NavLink, withRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Layout, Affix, Button, Menu, Timeline, Icon } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import './index.less';
 import { demoSetState, change, login } from '../../Action/index';
@@ -14,7 +14,6 @@ import Translation from '../Translation';
 const {
 	Header, Footer, Content, Sider
 } = Layout;
-
 
 class App extends Component {
 	componentWillMount () {
@@ -37,7 +36,7 @@ class App extends Component {
 								{
 									this.props.menuList.map((item, index) => {
 										return (
-											<Menu.Item key={'/Entry/' + item.link}>
+											<Menu.Item key={`/Entry/${item.link}`}>
 												{item.name}
 											</Menu.Item>
 										);
@@ -50,23 +49,12 @@ class App extends Component {
 						<QueueAnim delay={300}>
 							<div key='body'>
 								<Switch>
-									<Route strict={true} path='/Entry' component={Record} />
-									<Route exact strict={true} path='/Entry/Photo' component={Photo} />
-									<Route exact strict={true} path='/Entry/Translation' component={Translation} />
+									<Route exact strict path='/Entry/Record' component={Record} />
+									<Route exact strict path='/Entry/Photo' component={Photo} />
+									<Route exact strict path='/Entry/Translation' component={Translation} />
+									<Redirect to='/Entry/Record' />
 								</Switch>
 							</div>
-							<Affix key='Affix'>
-								<Button
-									type='primary'
-									onClick={() => {
-										// this.setState({ show : false });
-										// console.log(this.props.history);
-										this.props.history.push('/');
-									}}
-								>
-										top
-								</Button>
-							</Affix>
 						</QueueAnim>
 					</Content>
 					<Footer key='Footer' />

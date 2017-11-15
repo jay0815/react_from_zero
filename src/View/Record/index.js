@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
-import { Layout, Affix, Button, Menu } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 // import './index.less';
 // import { demoSetState, change, login } from '../../Action/index';
-
-const {
-	Header, Footer, Content, Sider
-} = Layout;
 
 
 class Record extends Component {
@@ -18,8 +13,8 @@ class Record extends Component {
 	}
 	render () {
 		return (
-			<div>
-				23333333
+			<div key='Record' style={{ height: '1880px' }}>
+				123
 			</div>
 		);
 	}
