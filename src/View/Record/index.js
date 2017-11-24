@@ -14,7 +14,7 @@ class Record extends Component {
 	render () {
 		return (
 			<div key='Record' style={{ height: '1880px' }}>
-				123
+				<div>123</div>
 			</div>
 		);
 	}

@@ -12,6 +12,10 @@ var readyPromise = new Promise(resolve => {
 
 const compiler = webpack(config);
 
+let env = process.env.NODE_ENV;
+
+console.log(env);
+
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath

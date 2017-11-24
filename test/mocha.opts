@@ -1,0 +1,6 @@
+--require babel-core/register
+--require ./test/setup.js
+--require ignore-styles
+--recursive
+--reporter spec
+--bail

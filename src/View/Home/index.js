@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import QueueAnim from 'rc-queue-anim';
 import { demoSetState, change } from '../../Action/index';
-import './index.less';
+// import style from './index.less';
 import svgIcon from '../../Svg/adminIcon.svg';
 
-class Home extends Component {
+export default class Home extends Component {
 	state = {
 		show: false
 	}
@@ -46,22 +46,22 @@ class Home extends Component {
 		);
 	}
 }
-Home.propTypes = {
-	// history: PropTypes.object
-	// cancelInfo: PropTypes.object,
-	// memo: PropTypes.string.isRequired,
-	// itemList: PropTypes.array.isRequired,
-	// fetchUser: PropTypes.func.isRequired,
-	// demoSetState: PropTypes.func.isRequired
-};
-function mapStateToProps (state) {
-	return {
-		// isAuth: state.App.isAuth
-	};
-}
-function mapDispatchToProps (dispatch) {
-	return {
-		// change: bindActionCreators(change, dispatch),
-	};
-}
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
+// Home.propTypes = {
+// 	history: PropTypes.object
+// 	cancelInfo: PropTypes.object,
+// 	memo: PropTypes.string.isRequired,
+// 	itemList: PropTypes.array.isRequired,
+// 	fetchUser: PropTypes.func.isRequired,
+// 	demoSetState: PropTypes.func.isRequired
+// };
+// function mapStateToProps (state) {
+// 	return {
+// 		isAuth: state.App.isAuth
+// 	};
+// }
+// function mapDispatchToProps (dispatch) {
+// 	return {
+// 		change: bindActionCreators(change, dispatch),
+// 	};
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(Home);

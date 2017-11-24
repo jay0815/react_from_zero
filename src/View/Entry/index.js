@@ -1,3 +1,7 @@
+import 'raf/polyfill';
+import 'core-js/es6/map';
+import 'core-js/es6/set';
+import 'babel-polyfill';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -5,7 +9,7 @@ import { connect } from 'react-redux';
 import { NavLink, withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Layout, Affix, Button, Menu, Timeline, Icon } from 'antd';
 import QueueAnim from 'rc-queue-anim';
-import './index.less';
+// import './index.less';
 import { demoSetState, change, login } from '../../Action/index';
 import Record from '../Record';
 import Photo from '../Photo';
