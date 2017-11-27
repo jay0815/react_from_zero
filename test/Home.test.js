@@ -6,7 +6,14 @@ import Home from '../src/View/Home';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 // in your test:
-
+//
+function MyComponent() {
+  return (
+    <div>
+      <span className="heading">Title</span>
+    </div>
+  );
+}
 
 describe('Counter Test', ( ) => {
 

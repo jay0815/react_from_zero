@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
 		// demoSetState: bindActionCreators(demoSetState, dispatch)
 	};
 };
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Record));
+export default connect(mapStateToProps, mapDispatchToProps)(Record);
