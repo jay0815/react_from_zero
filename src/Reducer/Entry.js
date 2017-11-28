@@ -9,6 +9,24 @@ const initialState = {
 	stop: false,
 	start: false,
 	word: 'qwer',
+	menuList: [
+		{
+			key: 'learning-record',
+			name: '笔记',
+			value: 'learning-record',
+			link: 'Record'
+		}, {
+			key: 'photo',
+			name: '随手拍的照骗',
+			value: 'photo',
+			link: 'Photo'
+		}, {
+			key: 'translation',
+			name: '翻译',
+			value: 'translation',
+			link: 'Translation'
+		}
+	]
 };
 
 export default reducerCreators(initialState, {

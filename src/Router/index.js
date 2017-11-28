@@ -1,13 +1,11 @@
 import React from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import Bundle from './../Bundle';
-// bundle模型用来异步加载组件
-// import Bundle from '../Bundle';
-// 导入各种组件
+import Home from '../Containers/Home'; // 首页组件
 // // 同步加载
-import App from '../View/Entry'; // 首页组件
-import Home from 'bundle-loader?lazy!../View/Home'; // 首页组件
-import Login from 'bundle-loader?lazy!../View/Login'; // 登录页组件
+import Entry from 'bundle-loader?lazy!../Containers/Entry'; // 首页组件
+import Login from 'bundle-loader?lazy!../Containers/Login'; // 登录页组件
+
 
 // 异步加载
 /*eslint-disable*/
@@ -18,19 +16,28 @@ import Login from 'bundle-loader?lazy!../View/Login'; // 登录页组件
 /* eslint-enable */
 
 // components load their module for initial visit
-// //这里只是给this.props.child传一个方法，最后在Bundle的render里面调用
+// //这里只是给this.props.child传一个方法，最后在Bundle的render里面调用W
 const createComponent = component => props => (
-	  <Bundle load={component}>
-	    {Component => <Component {...props} />}
-	  </Bundle>
+	<Bundle load={component}>
+		{Component => { return <Component {...props} />; }}
+	</Bundle>
 );
 // 路由配置
 const RouterConfig = () => (
-		<div>
-				<Route exact path='/' component={App} />
-				<Route exact path='/login' component={ createComponent(Login)} />
-				<Route exact path='/home' component={ createComponent(Home)} />
-		</div>
+	<div>
+		<Switch>
+			<Route exact path='/' component={Home} />
+			<Route exact path='/login' component={createComponent(Login)} />
+			<Route path='/Entry' component={createComponent(Entry)} />
+			<Route
+				render={() => {
+					return (
+						<Redirect to='/' />
+					);
+				}}
+			/>
+		</Switch>
+	</div>
 );
 // 导出
 export default RouterConfig;

@@ -175,16 +175,16 @@ module.exports = {
 			{
 				test: /\.(svg).*$/i,
 				oneOf: [
-				 {
-					 issuer: /.less$/,
-					 use: 'svg-url-loader'
-				 },
-				 {
-					 issuer: /.js$/,
-					 use: 'svg-url-loader?noquotes'
-				 }
-			 ],
-		 }
+					{
+						issuer: /.less$/,
+						use: 'svg-url-loader'
+					},
+					{
+						issuer: /.js$/,
+						use: 'svg-url-loader?noquotes'
+					}
+				],
+			}
 		]
 	}
 //     postcss: function () {
