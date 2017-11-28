@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
+import { Layout, Affix, Button, Menu } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 // import './index.less';
-// import { demoSetState, change, login } from '../../Action/index';
 
+const {
+	Header, Footer, Content, Sider
+} = Layout;
 
-class Record extends Component {
+@withRouter
+
+export default class Translation extends Component {
 	componentWillMount () {
 	}
 	render () {
 		return (
-			<div key='Record' style={{ height: '1880px' }}>
-				<div>123</div>
+			<div>
+				Translation
 			</div>
 		);
 	}
 }
-Record.propTypes = {
+Translation.propTypes = {
 	// history: PropTypes.object,
 	// menuList: PropTypes.array.isRequired,
 	// cancelInfo: PropTypes.object,
@@ -31,17 +34,3 @@ Record.propTypes = {
 	// change: PropTypes.func.isRequired,
 	// demoSetState: PropTypes.func.isRequired
 };
-const mapStateToProps = (state) => {
-	return {
-		// menuList: state.Entry.menuList,
-		// isAuth: state.App.isAuth,
-		// word: state.App.word
-	};
-};
-const mapDispatchToProps = (dispatch) => {
-	return {
-		// change: bindActionCreators(change, dispatch),
-		// demoSetState: bindActionCreators(demoSetState, dispatch)
-	};
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Record);

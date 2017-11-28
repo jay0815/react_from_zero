@@ -4,11 +4,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import QueueAnim from 'rc-queue-anim';
-import { demoSetState, change } from '../../Action/index';
+// import { demoSetState, change } from '../../Action/index';
 // import style from './index.less';
 import svgIcon from '../../Svg/adminIcon.svg';
 
-export default class Home extends Component {
+class Home extends Component {
 	state = {
 		show: false
 	}
@@ -54,14 +54,14 @@ export default class Home extends Component {
 // 	fetchUser: PropTypes.func.isRequired,
 // 	demoSetState: PropTypes.func.isRequired
 // };
-// function mapStateToProps (state) {
-// 	return {
-// 		isAuth: state.App.isAuth
-// 	};
-// }
-// function mapDispatchToProps (dispatch) {
-// 	return {
-// 		change: bindActionCreators(change, dispatch)
-// 	};
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Home);
+function mapStateToProps (state) {
+	return {
+		// isAuth: state.App.isAuth
+	};
+}
+function mapDispatchToProps (dispatch) {
+	return {
+		// change: bindActionCreators(change, dispatch)
+	};
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,22 +1,18 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-// import Immutable from 'immutable';
-// import { combineReducers } from 'redux-immutablejs';
 import thunk from 'redux-thunk';
-// import createSagaMiddleware from 'redux-saga';
-// import {watchIncrementAsync} from '../Action/saga';
+import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import reducer from '../Reducer/index';
 import afterApiMiddleware from '../MiddleWare/afterApiMiddleware';
 // import promiseMiddleware from '../MiddleWare/promiseMiddleware';
-import createHistory from 'history/createBrowserHistory';
 const history = createHistory();
 const localRouterMiddleware = routerMiddleware(history);
 // eslint-disable-next-line
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-let arr = [localRouterMiddleware, thunk, afterApiMiddleware];
-if(process.env.NODE_ENV !== 'production')arr.push(createLogger());
+const arr = [localRouterMiddleware, thunk, afterApiMiddleware];
+if (process.env.NODE_ENV !== 'production')arr.push(createLogger());
 // const state = Immutable.fromJS({});
 // 创建一个 Redux store 来以存放应用中所有的 state，应用中应有且仅有一个 store。
 const store = createStore(reducer, composeEnhancers(applyMiddleware(...arr)));
@@ -29,10 +25,16 @@ if (module.hot) {
 	});
 }
 // ---redux-saga---
+// import createSagaMiddleware from 'redux-saga';
+// import {watchIncrementAsync} from '../Action/saga';
 // const sagaMiddleware = createSagaMiddleware();
 // const store = createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware,createLogger())));
 // sagaMiddleware.run(watchIncrementAsync);
 // ---redux-saga---
+// ---redux-Immutable---
+// import Immutable from 'immutable';
+// import { combineReducers } from 'redux-immutablejs';
+// ---redux-Immutable---
 export default store;
 
 

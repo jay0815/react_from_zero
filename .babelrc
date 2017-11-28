@@ -21,6 +21,10 @@
 		      	}],
 				"react",
 	   		 	"stage-1"
+			],
+			"plugins": [
+				"transform-decorators-legacy",
+				"transform-class-properties"
 			]
 		},
 		"development": {
@@ -31,7 +35,11 @@
 				"react",
 	   		 	"stage-1"
 			],
-			"plugins": ["react-hot-loader/babel"]
+			"plugins": [
+				"transform-decorators-legacy",
+				"transform-class-properties",
+				"react-hot-loader/babel"
+			]
 		},
 		"test": {
 			"presets": [
@@ -40,6 +48,8 @@
 	   		 	"stage-1"
 			],
 			"plugins": [
+				"transform-decorators-legacy",
+				"transform-class-properties",
 				[
 					"transform-runtime"
 				]

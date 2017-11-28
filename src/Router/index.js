@@ -1,16 +1,10 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import Bundle from './../Bundle';
-import Home from '../View/Home'; // 首页组件
-// import Entry from '../View/Entry';
-// bundle模型用来异步加载组件
-// import Bundle from '../Bundle';
-// 导入各种组件
+import Home from '../Containers/Home'; // 首页组件
 // // 同步加载
-import Entry from 'bundle-loader?lazy!../View/Entry'; // 首页组件
-import Login from 'bundle-loader?lazy!../View/Login'; // 登录页组件
-import Record from 'bundle-loader?lazy!../View/Record';
-
+import Entry from 'bundle-loader?lazy!../Containers/Entry'; // 首页组件
+import Login from 'bundle-loader?lazy!../Containers/Login'; // 登录页组件
 
 
 // 异步加载

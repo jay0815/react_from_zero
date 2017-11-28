@@ -110,34 +110,6 @@ app.post('/login', jsonParser, function (req, res) {
 
 let event = new EventEmitter();
 
-// function createToken(content){
-//     return jwt.sign({
-//     },
-//     'shhhhh',
-//     {
-//         expiresIn: '1days',
-//         issuer: 'server',
-//         audience: 'client',
-//         subject: 'case'
-//     }
-// );
-// }
-//  与服务端交互发生错误
-// event.on('agError', function (res, errHtmlMessage, errLogMessage, body, response, err) {
-//     res.json({code: "-1", message: "服务器发生异常，请稍后再试"});
-//     return;
-// });
-//
-// app.post('/logout', function (req, res) {
-//     res.json({code: "0", message: "注销成功"});
-// });
-
-//监听全局异常,防止程序崩溃
-// app.use(function (err, req, res, next) {
-//     normalLog.error("发生全局异常:" + err);
-//     res.json({code: "-1", message: "服务器发生异常,请稍后再试"});
-//     return;
-// });
 
 app.listen(5000, function(err) {
   if (err) {

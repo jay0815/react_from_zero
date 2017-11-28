@@ -44,7 +44,7 @@ Login.propTypes = {
 	// itemList: PropTypes.array.isRequired,
 	// fetchUser: PropTypes.func.isRequired,
 	change: PropTypes.func.isRequired,
-	login: PropTypes.func.isRequired
+	// login: PropTypes.func.isRequired
 };
 const mapStateToProps = (state) => {
 	return {

@@ -1,7 +1,3 @@
-import 'raf/polyfill';
-import 'core-js/es6/map';
-import 'core-js/es6/set';
-import 'babel-polyfill';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
@@ -11,9 +7,9 @@ import { Layout, Affix, Button, Menu, Timeline, Icon } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 // import './index.less';
 import { demoSetState, change, login } from '../../Action/index';
-import Record from '../Record';
-import Photo from '../Photo';
-import Translation from '../Translation';
+import Record from '../../Component/Record';
+import Photo from '../../Component/Photo';
+import Translation from '../../Component/Translation';
 
 const {
 	Header, Footer, Content, Sider

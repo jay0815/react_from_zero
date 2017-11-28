@@ -15,6 +15,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const theme = require('./theme.js');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const HappyPack = require('happypack');
+
 const happyThreadPool = HappyPack.ThreadPool({ size: 4 });
 
 // import px2rem from 'postcss-pxtorem';
