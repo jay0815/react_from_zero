@@ -14,11 +14,9 @@ const ConsoleLogOnBuildWebpackPlugin = require('./normal');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const theme = require('./theme.js');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+const HappyPack = require('happypack');
+const happyThreadPool = HappyPack.ThreadPool({ size: 4 });
 
-const svgSpriteDirs = [
-	// require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
-	path.resolve(__dirname, 'src/Svg'), // 业务代码本地私有 svg 存放目录
-];
 // import px2rem from 'postcss-pxtorem';
 // var webpack = require('webpack');
 // var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -112,40 +110,23 @@ module.exports = {
 		new webpack.LoaderOptionsPlugin({
 			debug: false
 		}),
-		new DuplicatePackageCheckerPlugin()
-		// new ConsoleLogOnBuildWebpackPlugin()
-		// 'vendor' 就是把依赖库(比如react react-router, redux)全部打包到 vendor.js中
-		// 'vendor.js' 就是把自己写的相关js打包到bundle.js中
-		// 一般依赖库放到前面，所以vendor放第一个
+		new DuplicatePackageCheckerPlugin(),
+		new HappyPack({
+	      id: 'js',
+	      threadPool: happyThreadPool,
+	      loaders: [ 'babel-loader' ]
+	  	})
 	],
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
 				exclude: /(node_modules)/,
-				use: [{
-					loader: 'babel-loader'
-				}]
+				use: 'happypack/loader?id=js'
+				// use: [{
+				// 	loader: 'babel-loader'
+				// }]
 			},
-			// {
-			// 	test: /\.less$/,
-			// 	use: [{
-			// 		loader: 'style-loader' // creates style nodes from JS strings
-			// 	}, {
-			// 		loader: 'css-loader' // translates CSS into CommonJS
-			// 	},
-			// 	{
-			// 		loader: 'postcss-loader', // translates CSS into CommonJS
-			// 		options: {
-			// 			plugins: () => [autoprefixer({
-			// 				browsers: ['last 2 versions', 'ie>8']
-			// 			}), rucksackCss()],
-			// 		}
-			// 	},
-			// 	{
-			// 		loader: 'less-loader' // compiles Less to CSS
-			// 	}]
-			// },
 			{
 				test: /\.less$/,
 				exclude: /node_modules/,
@@ -165,7 +146,7 @@ module.exports = {
 						},
 						{
 							loader: 'less-loader'// compiles Less to CSS
-						},
+						}
 					]
 				})
 			},
@@ -211,16 +192,5 @@ module.exports = {
 				}]
 			}
 		]
-	},
-//     postcss: function () {
-//   return [
-//     require('precss'),
-//     require('autoprefixer'),
-//     require('rucksack-css'),
-//     pxtorem({
-//       rootValue: 100,
-//       propWhiteList: [],
-//     })
-//   ];
-// }
+	}
 };
