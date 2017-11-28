@@ -61,7 +61,7 @@ export default class Home extends Component {
 // }
 // function mapDispatchToProps (dispatch) {
 // 	return {
-// 		change: bindActionCreators(change, dispatch),
+// 		change: bindActionCreators(change, dispatch)
 // 	};
 // }
 // export default connect(mapStateToProps, mapDispatchToProps)(Home);

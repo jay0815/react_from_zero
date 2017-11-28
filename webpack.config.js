@@ -13,6 +13,7 @@ const rucksackCss = require('rucksack-css');
 const ConsoleLogOnBuildWebpackPlugin = require('./normal');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const theme = require('./theme.js');
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 
 const svgSpriteDirs = [
 	// require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
@@ -110,7 +111,8 @@ module.exports = {
 		new ExtractTextPlugin({ filename: '[name].[chunkhash].css', allChunks: true, disable: false }),
 		new webpack.LoaderOptionsPlugin({
 			debug: false
-		})
+		}),
+		new DuplicatePackageCheckerPlugin()
 		// new ConsoleLogOnBuildWebpackPlugin()
 		// 'vendor' 就是把依赖库(比如react react-router, redux)全部打包到 vendor.js中
 		// 'vendor.js' 就是把自己写的相关js打包到bundle.js中

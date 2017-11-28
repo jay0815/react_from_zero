@@ -17,13 +17,17 @@
   router问题 https://segmentfault.com/q/1010000008219479
 
 ### 2017.11.02
-- TODO：常用的库，通过cdn的方式引入，而不再走webpack编译，大大提升了编译和打包时间（）
 - 加入 cross-env 库，支持Mac、Win 跨平台设置环境变量（old： export NODE_ENV=test && scrpit  ; new: cross-env scrpit）
 
+### 2017.11.28
+- 加入 duplicate-package-checker-webpack-plugin,协助分析重复模块，减小打包体积
+- 打包时加入 --json > analyze.json 生成打包分析文件，可以通过 https://alexkuz.github.io/webpack-chart/ http://webpack.github.io/analyse/
+参考https://www.cnblogs.com/libin-1/p/7027164.html
 
 mocha 新写法
 https://github.com/mochajs/mocha/wiki/compilers-deprecation
 future version will remove --compilersbabel-core/register ; instead of --require babel-core/register
+
 
 ### mocha info
 - --check-leaks               //检测全局变量造成的内存泄漏问题
@@ -51,3 +55,5 @@ future version will remove --compilersbabel-core/register ; instead of --require
 - --use_strict                强制使用严格模式
 - --watch-extensions <ext>,... --watch监控的扩展
 - --delay                     异步测试用例的延迟时间
+
+- TODO：常用的库，通过cdn的方式引入，而不再走webpack编译，大大提升了编译和打包时间（）
