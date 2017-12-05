@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/jay0815/react_from_zero#readme",
   "dependencies": {
-    "antd": "^2.13.9",
+    "antd": "^3.0.0",
     "autoprefixer": "^7.1.6",
     "babel-plugin-import": "^1.6.2",
     "babel-polyfill": "^6.26.0",
@@ -111,7 +111,6 @@
     "postcss-loader": "^2.0.6",
     "postcss-scss": "^1.0.2",
     "react-test-renderer": "^16.1.1",
-    "redbox-react": "^1.5.0",
     "redux-devtools": "^3.4.0",
     "rimraf": "^2.6.2",
     "style-loader": "^0.18.2",
