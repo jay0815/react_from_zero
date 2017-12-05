@@ -23,6 +23,19 @@
 - 加入 duplicate-package-checker-webpack-plugin,协助分析重复模块，减小打包体积
 - 打包时加入 --json > analyze.json 生成打包分析文件，可以通过 https://alexkuz.github.io/webpack-chart/ http://webpack.github.io/analyse/
 参考https://www.cnblogs.com/libin-1/p/7027164.html
+- 解决使用react-router 4带来的测试用例写法问题
+（如果直击使用 router 而不是继承自 给定的router组件(MemoryRouter,BrowserRouter,HashRouter),则会报错：Cannot read property 'location' of undefined）
+- babelrc中使用公共 plugins 设置 transform-decorators-legacy、transform-class-properties ，会报错：
+	npm install babel-plugin-transform-decorators-legacy --save-dev
+
+	and add the following line to your .babelrc file:
+
+	{
+		"plugins": ["transform-decorators-legacy"]
+	}
+	在babel的issue中也有人提出这个问题:
+	https://github.com/babel/babel/issues/6858
+	暂时只能使用很丑的写法，在每个环境下都配置。
 
 mocha 新写法
 https://github.com/mochajs/mocha/wiki/compilers-deprecation

@@ -12,6 +12,8 @@ const initialState = {
 
 export default reducerCreators(initialState, {
 	[`${types.SET_LOGIN_INFO}`]: (state, data, params) => {
+		console.log(data);
+		console.log(params);
 		return Object.assign({}, state, {
 			...params
 		});

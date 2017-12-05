@@ -10,7 +10,6 @@ const {
 } = Layout;
 
 @withRouter
-
 export default class Translation extends Component {
 	componentWillMount () {
 	}

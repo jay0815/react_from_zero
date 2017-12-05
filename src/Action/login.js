@@ -21,7 +21,7 @@ export function login (param) {
 export function change (param) {
 	return (dispatch, getState) => {
 		dispatch({
-			type: types.CHANGE_LONGIN_STATE,
+			type: types.SET_LOGIN_INFO,
 			params: param
 		});
 	};

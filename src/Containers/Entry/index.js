@@ -7,9 +7,9 @@ import { Layout, Affix, Button, Menu, Timeline, Icon } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 // import './index.less';
 import { demoSetState, change, login } from '../../Action/index';
-import Record from '../../Component/Record';
-import Photo from '../../Component/Photo';
-import Translation from '../../Component/Translation';
+import Record from '../Record';
+import Photo from '../Photo';
+import Translation from '../Translation';
 
 const {
 	Header, Footer, Content, Sider

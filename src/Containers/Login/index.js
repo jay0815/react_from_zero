@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
+import { Layout, Button } from 'antd';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -32,6 +32,7 @@ class Login extends Component {
 							<span className='top-title'>Jack Qian`s BLOG</span>
 						</NavLink>
 					</div>
+					<Button onClick={() => { this.passwordChange(333); }} > 333</Button>
 					<p className='top-desc'>Jack Qian 一个走在全栈路上的小小前端程序猿</p>
 				</div>
 			</div>

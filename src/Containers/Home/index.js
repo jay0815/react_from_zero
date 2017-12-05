@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 import QueueAnim from 'rc-queue-anim';
 // import { demoSetState, change } from '../../Action/index';
-// import style from './index.less';
+import style from './index.less';
 import svgIcon from '../../Svg/adminIcon.svg';
+
+@withRouter
 
 class Home extends Component {
 	state = {
