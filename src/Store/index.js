@@ -4,7 +4,7 @@ import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import reducer from '../Reducer/index';
-import afterApiMiddleware from '../MiddleWare/afterApiMiddleware';
+import afterApiMiddleware from './MiddleWare/afterApiMiddleware';
 // import promiseMiddleware from '../MiddleWare/promiseMiddleware';
 const history = createHistory();
 const localRouterMiddleware = routerMiddleware(history);
