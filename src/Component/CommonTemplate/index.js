@@ -12,6 +12,10 @@ const {
 export default class CommonTemplate extends Component {
 	componentWillMount () {
 	}
+  componentDidCatch (error,info) {
+    console.log(info);
+    console.log(error);
+  }
 	render () {
 		return (
 			<div>
