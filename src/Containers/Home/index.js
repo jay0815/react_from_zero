@@ -6,7 +6,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 import QueueAnim from 'rc-queue-anim';
 // import { demoSetState, change } from '../../Action/index';
 import style from './index.less';
-import svgIcon from '../../Svg/adminIcon.svg';
+import svgIcon from '../../Static/Svg/adminIcon.svg';
 
 @withRouter
 
@@ -27,7 +27,7 @@ class Home extends Component {
 						{
 							this.state.show ? [
 								<div className='top-header' key='logo'>
-									<NavLink to='/Entry'>
+									<NavLink to='/login'>
 										<img alt='' className='top-logo' src={svgIcon} />
 										<span className='top-title'>Jack Qian`s BLOG</span>
 									</NavLink>

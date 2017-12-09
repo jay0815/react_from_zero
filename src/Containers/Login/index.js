@@ -20,7 +20,7 @@ class Login extends Component {
 		this.props.change({ name: value });
 	}
 	passwordChange = (value) => {
-		this.props.change({ password: value });
+		this.props.login({ password: value });
 	}
 	render () {
 		return (
@@ -28,10 +28,11 @@ class Login extends Component {
 				<div className='top-icon'>
 					<div className='top-header'>
 						<NavLink to='/'>
-							<img alt='' className='top-logo' src={require('../../Svg/adminIcon.svg')} />
+							<img alt='' className='top-logo' src={require('../../Static/Svg/adminIcon.svg')} />
 							<span className='top-title'>Jack Qian`s BLOG</span>
 						</NavLink>
 					</div>
+          <Button onClick={() => { this.nameChange(222); }} > 222</Button>
 					<Button onClick={() => { this.passwordChange(333); }} > 333</Button>
 					<p className='top-desc'>Jack Qian 一个走在全栈路上的小小前端程序猿</p>
 				</div>
