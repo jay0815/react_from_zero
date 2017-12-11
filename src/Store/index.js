@@ -18,11 +18,11 @@ if (process.env.NODE_ENV !== 'production') arr.push(createLogger());
 const store = createStore(reducer, composeEnhancers(applyMiddleware(...arr)));
 // store.unsubscribeHistory = history.listen(updateLocation(store));
 if (module.hot) {
-	// Enable Webpack hot module replacement for reducers
-	module.hot.accept('../Reducer/index', () => {
-		const nextRootReducer = require('../Reducer/index').default;
-		store.replaceReducer(nextRootReducer);
-	});
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept('../Reducer/index', () => {
+    const nextRootReducer = require('../Reducer/index').default;
+    store.replaceReducer(nextRootReducer);
+  });
 }
 // ---redux-saga---
 // import createSagaMiddleware from 'redux-saga';
@@ -36,7 +36,6 @@ if (module.hot) {
 // import { combineReducers } from 'redux-immutablejs';
 // ---redux-Immutable---
 export default store;
-
 
 // export default function configureStore(initialState) {
 //   // const store = createStore(rootReducer, initialState);

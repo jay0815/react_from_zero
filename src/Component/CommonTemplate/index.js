@@ -6,33 +6,33 @@ import QueueAnim from 'rc-queue-anim';
 // import './index.less';
 
 const {
-	Header, Footer, Content, Sider
+  Header, Footer, Content, Sider
 } = Layout;
 
 export default class CommonTemplate extends Component {
-	componentWillMount () {
-	}
-  componentDidCatch (error,info) {
+  componentWillMount () {
+  }
+  componentDidCatch (error, info) {
     console.log(info);
     console.log(error);
   }
-	render () {
-		return (
-			<div>
-				CommonTemplate
-			</div>
-		);
-	}
+  render () {
+    return (
+      <div>
+        CommonTemplate
+      </div>
+    );
+  }
 }
 CommonTemplate.propTypes = {
-	// history: PropTypes.object,
-	// menuList: PropTypes.array.isRequired,
-	// cancelInfo: PropTypes.object,
-	// memo: PropTypes.string.isRequired,
-	// isAuth: PropTypes.bool.isRequired,
-	// itemList: PropTypes.array.isRequired,
-	// fetchUser: PropTypes.func.isRequired,
-	// word: PropTypes.string.isRequired,
-	// change: PropTypes.func.isRequired,
-	// demoSetState: PropTypes.func.isRequired
+  // history: PropTypes.object,
+  // menuList: PropTypes.array.isRequired,
+  // cancelInfo: PropTypes.object,
+  // memo: PropTypes.string.isRequired,
+  // isAuth: PropTypes.bool.isRequired,
+  // itemList: PropTypes.array.isRequired,
+  // fetchUser: PropTypes.func.isRequired,
+  // word: PropTypes.string.isRequired,
+  // change: PropTypes.func.isRequired,
+  // demoSetState: PropTypes.func.isRequired
 };

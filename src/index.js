@@ -13,8 +13,9 @@ const history = createHistory();
 
 // 订阅state改变
 store.subscribe(() => {
-  // console.log(store.getState());
-  console.log(process.env.NODE_ENV !== 'production' ? store.getState() : '');
+  // eslint-disable-next-line no-console
+  console.log(store.getState());
+  // console.log(process.env.NODE_ENV !== 'production' ? store.getState() : ''); 正式环境自动去除 console\warnings
 });
 const render = (Component) => {
   ReactDOM.render(<AppContainer><Provider store={store}><ConnectedRouter history={history}><Component /></ConnectedRouter></Provider></AppContainer>, document.getElementById('root'));
@@ -29,8 +30,9 @@ if (module.hot) {
 	* Otherwise you'll see it every time something changes.
 	* See https://github.com/gaearon/react-hot-loader/issues/298
 	*/
-  const orgError = console.error; // eslint-disable-line no-console
-  console.error = (message) => { // eslint-disable-line no-console
+  const orgError = console.error;// eslint-disable-line no-console
+  // eslint-disable-next-line no-console
+  console.error = (message) => {
     if (message && message.indexOf('You cannot change <Router routes>;') === -1) {
       // Log the error as normally
       orgError.apply(console, [message]);
