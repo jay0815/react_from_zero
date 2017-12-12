@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react-dom';
 import PropTypes from 'prop-types';
 
 export default class Bundle extends Component {

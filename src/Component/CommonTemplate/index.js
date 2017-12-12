@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react-dom';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { Layout, Affix, Button, Menu } from 'antd';
@@ -13,7 +13,9 @@ export default class CommonTemplate extends Component {
   componentWillMount () {
   }
   componentDidCatch (error, info) {
+    // eslint-disable-next-line no-console
     console.log(info);
+    // eslint-disable-next-line no-console
     console.log(error);
   }
   render () {

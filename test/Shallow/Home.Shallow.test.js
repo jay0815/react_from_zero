@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react-dom';
 import { expect } from 'chai';
 import ReactTestUtils from 'react-dom/test-utils';
 import { shallow, render, mount } from 'enzyme';
@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 import CommonTemplate from '../../src/Component/CommonTemplate';
-
 
 // 创建一个测试用的时候的store必须在创建的时候必须用combineReducers包裹一层，否则默认的state无法引导到测试组件的props。
 
@@ -18,10 +17,10 @@ renderer.render(<CommonTemplate />);
 const result = renderer.getRenderOutput();
 
 describe('Shallow Test', () => {
-	it('Home\'s Shallow Test', function () {
-		expect(result.type).to.equal('div');
-		expect(result.props.children).to.equal('CommonTemplate');
-	});
+  it('Home\'s Shallow Test', function () {
+    expect(result.type).to.equal('div');
+    expect(result.props.children).to.equal('CommonTemplate');
+  });
 });
 // describe('Counter Test', ( ) => {
 //

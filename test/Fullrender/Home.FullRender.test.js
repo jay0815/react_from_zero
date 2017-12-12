@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react-dom';
 import { expect } from 'chai';
 import ReactTestUtils from 'react-dom/test-utils';
 import { shallow, render, mount } from 'enzyme';
@@ -25,12 +25,12 @@ const divisions = ReactTestUtils.scryRenderedDOMComponentsWithTag(app, 'div');
 
 // 这个测试用的是react官方的测试组件
 describe('render into document with store and use react test util', () => {
-	it('try to render into document by React', () => {
-		// react 自带测试套件
-		// const app = ReactTestUtils.renderIntoDocument(provider);
-		// const divisions = ReactTestUtils.scryRenderedDOMComponentsWithTag(app, 'div');
-		expect(divisions.length).to.equal(3);
-	});
+  it('try to render into document by React', () => {
+    // react 自带测试套件
+    // const app = ReactTestUtils.renderIntoDocument(provider);
+    // const divisions = ReactTestUtils.scryRenderedDOMComponentsWithTag(app, 'div');
+    expect(divisions.length).to.equal(3);
+  });
 });
 
 // // 这个测试用的是enzyme的测试组件

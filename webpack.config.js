@@ -24,35 +24,33 @@ const happyThreadPool = HappyPack.ThreadPool({ size: 4 });
 // var autoprefixer = require('autoprefixer');
 // var pxtorem = require('postcss-pxtorem'); //移动端适配使用
 module.exports = {
-	// debug: true, loaders 的 debug 模式将在 webpack 3 或后续版本中取消。
-	entry: {
-		// 文件入口配置
-		index: './src/index',
-		vendor: [
-			'react',
-			'react-dom',
-			'react-router-dom',
-			'redux',
-			// 'redux-logger',
-			// 'redux-saga',
-			'redux-thunk',
-		]
-		// 为了优化，切割代码，提取第三方库（实际上，我们将会引入很多第三方库）
-	},
-	output: {
-		// 文件输出配置
-		path: path.join(__dirname, 'dist'),
-		// 输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它.
-		publicPath: '/',
-		// 模板、样式、脚本、图片等资源对应的server上的路径
-		// filename: 'index.js',
-
-		filename: '[name].[chunkhash].js',
-
-		chunkFilename: '[name].[chunkhash].js',
-		// 命名生成的JS
-	},
-	plugins: [
+  // debug: true, loaders 的 debug 模式将在 webpack 3 或后续版本中取消。
+  entry: {
+  // 文件入口配置
+    index: './src/index',
+    vendor: [
+    // 'react',
+      'react-dom',
+      'react-router-dom',
+      'redux',
+      // 'redux-logger',
+      // 'redux-saga',
+      'redux-thunk',
+    ]
+    // 为了优化，切割代码，提取第三方库（实际上，我们将会引入很多第三方库）后面会考虑使用cdn
+  },
+  output: {
+    // 文件输出配置
+    path: path.join(__dirname, 'dist'),
+    // 输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它.
+    publicPath: '/',
+    // 模板、样式、脚本、图片等资源对应的server上的路径
+    // filename: 'index.js',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
+    // 命名生成的JS
+  },
+  plugins: [
 		// new webpack.optimize.OccurrenceOrderPlugin(), webpack 2 or 3 及 更高版本中 OccurrenceOrderPlugin 被默认加载
 		new HtmlWebpackPlugin({
 			template: './Template/index.html',
