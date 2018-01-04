@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 // AppContainer 是一个 HMR 必须的包裹(wrapper)组件

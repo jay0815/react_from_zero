@@ -1,4 +1,5 @@
-import { Component } from 'react-dom';
+import React, { Component } from 'react';
+// import { Component } from 'react-dom';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
