@@ -7,7 +7,7 @@ import { NavLink, withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Layout, Affix, Button, Menu, Timeline, Icon } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 // import './index.less';
-import { demoSetState, change, login } from '../../Action/index';
+import { demoSetState, change } from '../../Action/index';
 import Record from '../Record';
 import Photo from '../Photo';
 import Translation from '../Translation';
@@ -91,7 +91,6 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    // change: bindActionCreators(change, dispatch),
     // demoSetState: bindActionCreators(demoSetState, dispatch)
   };
 };

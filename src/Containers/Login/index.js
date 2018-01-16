@@ -21,7 +21,7 @@ class Login extends Component {
     this.props.change({ name: value });
   }
   passwordChange = (value) => {
-    this.props.login({ password: value });
+    // this.props.login({ password: value });
   }
   render () {
     return (
@@ -34,7 +34,7 @@ class Login extends Component {
             </NavLink>
           </div>
           <Button onClick={() => { this.nameChange(222); }} > 222</Button>
-          <Button onClick={() => { console.log(this.props.history.push('Entry')); }} > 333</Button>
+          <Button onClick={() => { console.log(this.props.history); }} > 333</Button>
           <p className='top-desc'>Jack Qian 一个走在全栈路上的小小前端程序猿</p>
         </div>
       </div>
@@ -46,8 +46,7 @@ Login.propTypes = {
   // isAuth: PropTypes.bool.isRequired,
   // itemList: PropTypes.array.isRequired,
   // fetchUser: PropTypes.func.isRequired,
-  change: PropTypes.func.isRequired,
-  // login: PropTypes.func.isRequired
+  change: PropTypes.func.isRequired
 };
 const mapStateToProps = (state) => {
   return {
@@ -57,7 +56,6 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: bindActionCreators(login, dispatch),
     change: bindActionCreators(change, dispatch),
   };
 };
