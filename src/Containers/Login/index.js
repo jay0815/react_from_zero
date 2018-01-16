@@ -34,7 +34,7 @@ class Login extends Component {
             </NavLink>
           </div>
           <Button onClick={() => { this.nameChange(222); }} > 222</Button>
-          <Button onClick={() => { this.passwordChange(333); }} > 333</Button>
+          <Button onClick={() => { console.log(this.props.history.push('Entry')); }} > 333</Button>
           <p className='top-desc'>Jack Qian 一个走在全栈路上的小小前端程序猿</p>
         </div>
       </div>

@@ -15,7 +15,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const theme = require('./theme.js');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const HappyPack = require('happypack');
-
+const CompressionPlugin = require("compression-webpack-plugin");
 const happyThreadPool = HappyPack.ThreadPool({ size: 4 });
 
 // import px2rem from 'postcss-pxtorem';
@@ -29,11 +29,11 @@ module.exports = {
   // 文件入口配置
     index: './src/index',
     vendor: [
-    // 'react',
+      'react',
       'react-dom',
       'react-router-dom',
       'redux',
-      // 'redux-logger',
+      'redux-logger',
       // 'redux-saga',
       'redux-thunk',
     ]
@@ -92,7 +92,7 @@ module.exports = {
 			compressor: {
 				warnings: false,
 				drop_debugger: true,
-				drop_console: true
+				drop_console: false
 			}
 		}),
 
@@ -110,11 +110,19 @@ module.exports = {
 			debug: false
 		}),
 		new DuplicatePackageCheckerPlugin(),
+    new ConsoleLogOnBuildWebpackPlugin(),
 		new HappyPack({
 	      id: 'js',
 	      threadPool: happyThreadPool,
 	      loaders: [ 'babel-loader' ]
-	  	})
+    })
+    // new CompressionPlugin({
+    //   test: /\.(js|css)$/,
+    //   asset: '[path].gz[query]',
+    //   algorithm: 'gzip',
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // })
 	],
 	module: {
 		rules: [
