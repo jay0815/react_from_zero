@@ -1,13 +1,13 @@
-import { Component } from 'react-dom';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { Layout, Affix, Button, Menu } from 'antd';
+// import { Layout, Affix, Button, Menu } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 // import './index.less';
 
-const {
-  Header, Footer, Content, Sider
-} = Layout;
+// const {
+//   Header, Footer, Content, Sider
+// } = Layout;
 
 export default class CommonTemplate extends Component {
   componentWillMount () {

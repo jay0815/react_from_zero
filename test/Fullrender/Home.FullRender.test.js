@@ -1,10 +1,10 @@
-import React from 'react-dom';
+import React from 'react';
 import { expect } from 'chai';
 import ReactTestUtils from 'react-dom/test-utils';
 import { shallow, render, mount } from 'enzyme';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import Home from '../../src/Containers/Home';
 import Reducer from '../../src/Reducer';

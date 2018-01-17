@@ -7,6 +7,7 @@ const express = require('express'),
     request = require('request'),
     path = require('path'),
     log4js = require('log4js'),
+    fs = require('fs'),
     EventEmitter = require('events').EventEmitter;
 var jsonParser = bodyParser.json();
 
@@ -14,6 +15,17 @@ var _resolve;
 var readyPromise = new Promise(resolve => {
   _resolve = resolve
 });
+
+/**
+ * 判断是否有logs文件夹，没有的话自动加上，防止下面日志文件报错
+ */
+if (!fs.existsSync('logs')) {
+  fs.mkdirSync('logs')
+} else {
+  if (!fs.statSync('logs').isDirectory()) {
+    throw('there has a file <<"logs">>, place rename or delete is.')
+  }
+}
 
 log4js.configure({
     appenders: {

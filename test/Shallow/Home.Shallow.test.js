@@ -1,4 +1,4 @@
-import React from 'react-dom';
+import React, { Component } from 'react';
 import { expect } from 'chai';
 import ReactTestUtils from 'react-dom/test-utils';
 import { shallow, render, mount } from 'enzyme';
