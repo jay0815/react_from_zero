@@ -2,38 +2,48 @@
 - npm start 支持 dom 与 redux同时热加载
 - 加入编译后浏览器自动开启的功能
 - 因为transform-class-properties报错调整了babel结构
-- （babel v6.x 中 env判断追加presets选项时,自定义的env会变成最后加载，产生transform-class-properties报错。为了便于在实际生产环境中使用，因此采用了一个不够优雅的配置。
-	https://github.com/babel/babel/issues/6604 这个issue 中有人提到了相同问题，babel作者表示会在 v7中加入 .babelrc.js 的引入配置）
+  * babel v6.x 中 env判断追加presets选项时,自定义的env会变成最后加载，产生transform-class-properties报错。为了便于在实际生产环境中使用，因此采用了一个不够优雅的配置。
+  * https://github.com/babel/babel/issues/6604 这个issue 中有人提到了相同问题，babel作者表示会在 v7中加入 .babelrc.js 的引入配置
 - 对前几天加入的postcss-loader 进行了验证，应该可以解决浏览器显示的兼容的问题？！
 
 ### 2017.10.31
 - npm start 修复浏览器路由跳转bug
-  router问题 https://segmentfault.com/q/1010000008219479
+  * (router问题) https://segmentfault.com/q/1010000008219479
 
 ### 2017.11.02
-- 加入 cross-env 库，支持Mac、Win 跨平台设置环境变量（old： export NODE_ENV=test && scrpit  ; new: cross-env scrpit）
+- 加入 cross-env 库，支持Mac、Win 跨平台设置环境变量
+  * old：export NODE_ENV=test && scrpit
+  * new: cross-env scrpit
 
 ### 2017.11.28
 - 加入 duplicate-package-checker-webpack-plugin,协助分析重复模块，减小打包体积
-- 打包时加入 --json > analyze.json 生成打包分析文件，可以通过 https://alexkuz.github.io/webpack-chart/ http://webpack.github.io/analyse/
-参考https://www.cnblogs.com/libin-1/p/7027164.html
-- 解决使用react-router 4带来的测试用例写法问题
-（如果直击使用 router 而不是继承自 给定的router组件(MemoryRouter,BrowserRouter,HashRouter),则会报错：Cannot read property 'location' of undefined）
+- 打包时加入 --json > analyze.json 生成打包分析文件，可以通过
+  * https://alexkuz.github.io/webpack-chart/
+  * http://webpack.github.io/analyse/
+  * 参考：https://www.cnblogs.com/libin-1/p/7027164.html
+- 解决使用react-router 4带来的测试用例写法问题（引入了react-router-reducer v5版，通过自监控history，去掉了@router的表示）
+  * 如果直击使用 router 而不是继承自 给定的router组件(MemoryRouter,BrowserRouter,HashRouter,则会报错：Cannot read property 'location' of undefined）
 - babelrc中使用公共 plugins 设置 transform-decorators-legacy、transform-class-properties ，会报错：
 	npm install babel-plugin-transform-decorators-legacy --save-dev
-
 	and add the following line to your .babelrc file:
-
-	{
+	```
+{
 		"plugins": ["transform-decorators-legacy"]
-	}
-	在babel的issue中也有人提出这个问题:
+}
+  ```
+	* 在babel的issue中也有人提出这个问题:
 	https://github.com/babel/babel/issues/6858
 	暂时只能使用很丑的写法，在每个环境下都配置。
+- mocha 新写法
+  * https://github.com/mochajs/mocha/wiki/compilers-deprecation
+  * future version will remove --compilersbabel-core/register ; instead of --require babel-core/register
 
-mocha 新写法
-https://github.com/mochajs/mocha/wiki/compilers-deprecation
-future version will remove --compilersbabel-core/register ; instead of --require babel-core/register
+### 2018.01.17
+- 重写了ReadMe
+- 调整了packjson的依赖位置，解决了cnpm install 后启动报依赖不存在的错误
+- hashHistory 通过/#/ 来达到与 browerHistory 区分的目的。当手动修改url的时候，会造成页面刷新。
+  * hashHistory 下对路由的修改如果仅限于 /#/ 后面的内容（不包含/#/）则页面不会刷新，reducer不会丢失。这个应该就是hash实现的内部机制
+  * browerHistory 则不存在这个功能
 
 
 ### mocha info

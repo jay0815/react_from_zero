@@ -33,7 +33,7 @@ module.exports = {
       'react-dom',
       'react-router-dom',
       'redux',
-      'redux-logger',
+      // 'redux-logger',
       // 'redux-saga',
       'redux-thunk',
     ]
@@ -92,7 +92,7 @@ module.exports = {
 			compressor: {
 				warnings: false,
 				drop_debugger: true,
-				drop_console: false
+				drop_console: true
 			}
 		}),
 
@@ -116,6 +116,7 @@ module.exports = {
 	      threadPool: happyThreadPool,
 	      loaders: [ 'babel-loader' ]
     })
+    // 文件二次压缩 ，效果要好于cdn
     // new CompressionPlugin({
     //   test: /\.(js|css)$/,
     //   asset: '[path].gz[query]',
@@ -190,7 +191,6 @@ module.exports = {
 			},
 			{
 				test: /\.(svg).*$/i,
-				// include: svgSpriteDirs, // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
 				use: [{
 					loader: 'url-loader?limit=1',
 					options: {
