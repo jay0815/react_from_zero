@@ -31,9 +31,8 @@
 		"plugins": ["transform-decorators-legacy"]
 }
   ```
-	* 在babel的issue中也有人提出这个问题:
-	https://github.com/babel/babel/issues/6858
-	暂时只能使用很丑的写法，在每个环境下都配置。
+	* 在babel的issue中也有人提出这个问题: https://github.com/babel/babel/issues/6858
+	* 暂时只能使用很丑的写法，在每个环境下都配置。
 - mocha 新写法
   * https://github.com/mochajs/mocha/wiki/compilers-deprecation
   * future version will remove --compilersbabel-core/register ; instead of --require babel-core/register
@@ -44,7 +43,14 @@
 - hashHistory 通过/#/ 来达到与 browerHistory 区分的目的。当手动修改url的时候，会造成页面刷新。
   * hashHistory 下对路由的修改如果仅限于 /#/ 后面的内容（不包含/#/）则页面不会刷新，reducer不会丢失。这个应该就是hash实现的内部机制
   * browerHistory 则不存在这个功能
-
+- fix error ：页面代码中使用react-dom 替换 react 包出现的问题
+```
+  Super expression must either be null or a function, not undefined
+```
+- fix error ：测试代码中使用react-dom 替换 react 包出现的问题
+```
+_reactDom2.default.createElement is not a function
+```
 
 ### mocha info
 - --check-leaks               //检测全局变量造成的内存泄漏问题
@@ -73,4 +79,4 @@
 - --watch-extensions <ext>,... --watch监控的扩展
 - --delay                     异步测试用例的延迟时间
 
-- TODO：常用的库，通过cdn的方式引入，而不再走webpack编译，大大提升了编译和打包时间（）
+- ~~TODO：常用的库，通过cdn的方式引入，而不再走webpack编译，大大提升了编译和打包时间（）~~
