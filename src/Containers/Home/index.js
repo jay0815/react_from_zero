@@ -15,13 +15,13 @@ class Home extends Component {
     show: false
   }
   componentDidMount () {
-    this.setState({ show: true });
+    // this.setState({ show: true });
   }
   componentWillUnmount () {
   }
   render () {
     // eslint-disable-next-line no-console
-    console.log('show',this.state.show);
+    console.log('show',this.state.show);// 关于state、props的测试，可以通过在页面内打印来判断。（太low，需要继续寻找enzyme的api）
     return (
       <div className='login-style' >
         <div className='top-icon'>

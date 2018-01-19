@@ -43,7 +43,7 @@ describe('render into document with store and use react test util', () => {
     expect(wrapper.find('div.top-icon')).to.have.length(1);//根据组件css进行匹配(CSS Selectors)
     expect(Home.prototype.componentDidMount.calledOnce).to.equal(true);
     wrapper.update();
-    expect(wrapper.find('div.top-header')).to.have.length(0);//根据组件css进行匹配(CSS Selectors)
+    expect(wrapper.find('Home').props().isAuth).to.have.equal(true);
     wrapper.unmount();//手动清除内存中的component对象
     expect(Home.prototype.componentWillUnmount.calledOnce).to.equal(true);
   });

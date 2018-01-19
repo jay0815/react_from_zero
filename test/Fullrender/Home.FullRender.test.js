@@ -29,6 +29,7 @@ describe('render into document with store and use react test util', () => {
     const app = ReactTestUtils.renderIntoDocument(provider);
     const divisions = ReactTestUtils.scryRenderedDOMComponentsWithTag(app, 'div');
     expect(divisions.length).to.equal(3);
+    wrapper.unmount();
   });
 });
 
