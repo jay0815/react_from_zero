@@ -1,0 +1,92 @@
+divisions: {
+  "HTMLDivElement":{
+    "__reactInternalInstance$itzejtx9o89":{
+      "FiberNode":{
+        "tag": 5,
+        "key": null,
+        "type": "div",
+        "stateNode": "[Circular]",
+        "return": "[Object]",
+        "child": "[Object]",
+        "sibling": null,
+        "index": 0,
+        "ref": null,
+        "pendingProps": null,
+        "memoizedProps": "[Object]",
+        "updateQueue": null,
+        "memoizedState": null,
+        "internalContextTag": 0,
+        "effectTag": 0,
+        "nextEffect": null,
+        "firstEffect": "[Object]",
+        "lastEffect": "[Object]",
+        "expirationTime": 0,
+        "alternate": null,
+        "_debugID": 9,
+        "_debugSource": null,
+        "_debugOwner": "[Object]",
+        "_debugIsCurrentlyTiming": false }
+    },
+    "__reactEventHandlers$itzejtx9o89": { "className": "login-style", "children": "[Object]" }
+  },
+  "HTMLDivElement":{
+    "__reactInternalInstance$itzejtx9o89": {
+      "FiberNode":{
+        "tag": 5,
+        "key": null,
+        "type": "div",
+        "stateNode": "[Circular]",
+        "return": "[Object]",
+        "child": "[Object]",
+        "sibling": null,
+        "index": 0,
+        "ref": null,
+        "pendingProps": null,
+        "memoizedProps": "[Object]",
+        "updateQueue": null,
+        "memoizedState": null,
+        "internalContextTag": 0,
+        "effectTag": 0,
+        "nextEffect": null,
+        "firstEffect": "[Object]",
+        "lastEffect": "[Object]",
+        "expirationTime": 0,
+        "alternate": null,
+        "_debugID": 10,
+        "_debugSource": null,
+        "_debugOwner": "[Object]",
+        "_debugIsCurrentlyTiming": false },
+     "__reactEventHandlers$itzejtx9o89": { "className": "top-icon", "children": "[Object]" }
+    }
+  },
+  "HTMLDivElement":{
+    "__reactInternalInstance$itzejtx9o89":{
+      "FiberNode":{
+        "tag": 5,
+        "key": null,
+        "type": "div",
+        "stateNode": "[Circular]",
+        "return": "[Object]",
+        "child": null,
+        "sibling": null,
+        "index": 0,
+        "ref": null,
+        "pendingProps": null,
+        "memoizedProps": "[Object]",
+        "updateQueue": null,
+        "memoizedState": null,
+        "internalContextTag": 0,
+        "effectTag": 0,
+        "nextEffect": null,
+        "firstEffect": null,
+        "lastEffect": null,
+        "expirationTime": 0,
+        "alternate": null,
+        "_debugID": 12,
+        "_debugSource": null,
+        "_debugOwner": "[Object]",
+        "_debugIsCurrentlyTiming": false },
+     "__reactEventHandlers$itzejtx9o89": { "children": "[Array]" }
+    }
+  }
+}

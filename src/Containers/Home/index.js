@@ -9,25 +9,26 @@ import QueueAnim from 'rc-queue-anim';
 import style from './index.less';
 import svgIcon from '../../Static/Svg/adminIcon.svg';
 
-@withRouter
 
 class Home extends Component {
   state = {
     show: false
   }
-  componentWillMount () {
+  componentDidMount () {
     this.setState({ show: true });
   }
   componentWillUnmount () {
   }
   render () {
+    // eslint-disable-next-line no-console
+    console.log('show',this.state.show);
     return (
       <div className='login-style' >
         <div className='top-icon'>
           <QueueAnim type={['right', 'left']} ease={['easeOutQuart', 'easeInOutQuart']}>
             {
               this.state.show ? [
-                <div className='top-header' key='logo'>
+                <div className='top-header' key='logo' leaf={123}>
                   <NavLink to='/login'>
                     <img alt='' className='top-logo' src={svgIcon} />
                     <span className='top-title'>Jack Qian`s BLOG</span>
@@ -59,7 +60,7 @@ class Home extends Component {
 // };
 function mapStateToProps (state) {
   return {
-    // isAuth: state.App.isAuth
+    isAuth: state.Entry.isAuth
   };
 }
 function mapDispatchToProps (dispatch) {

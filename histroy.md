@@ -52,6 +52,12 @@
 _reactDom2.default.createElement is not a function
 ```
 
+### 2018.01.18
+- 使用mount 是无法获取componentWillMount 生命周期的。（因为mount 是已经渲染完成了，这他妈不是废话吗 >……<）
+
+
+
+
 ### mocha info
 - --check-leaks               //检测全局变量造成的内存泄漏问题
 - --full-trace                //展示完整的错误栈信息
