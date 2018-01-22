@@ -55,12 +55,21 @@ _reactDom2.default.createElement is not a function
 ### 2018.01.18
 - 使用mount 是无法获取componentWillMount 生命周期的。（因为mount 是已经渲染完成了，这他妈不是废话吗 >……<）
 
+### 2018.01.22
+- 通过改变代码结构来进行对state的测试
+```
+Containers的结构：
+src ->
+   Containers ->
+     模块名xx(eg:Home) ->
+        xx.js(页面内容模板)+index.js(用于组合reducer、action 和 模板)+index.less
+```
 
 
 
 ### mocha info
 - --check-leaks               //检测全局变量造成的内存泄漏问题
-- --full-trace                //展示完整的错误栈信息
+- --full-trace                //展示完整的错误栈信息MMM
 - --compilers <ext>:<module>,...  //使用给定的模块来编译文件
 - --debug-brk                 //启用nodejs的debug模式
 - --es_staging                //启用全部staged特性

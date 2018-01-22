@@ -6,7 +6,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import Home from '../../src/Containers/Home';
+import Home from '../../src/Containers/Home/index.js';
 import Reducer from '../../src/Reducer';
 import sinon from 'sinon';
 
@@ -39,7 +39,8 @@ describe('render into document with store and use react test util', () => {
     sinon.spy(Home.prototype, 'componentWillUnmount');
     const wrapper = mount(provider);
     expect(wrapper.find('Home')).to.have.length(1);//根据组件对外暴露的类名进行匹配（Component Display Name）
-    expect(wrapper.find(Home)).to.have.length(1);//根据组件本身进行匹配（Component Constructors）
+    // expect(wrapper.find('Home')).to.have.length(1) === expect(wrapper.find(Home)).to.have.length(1);
+    // 根据组件本身进行匹配（Component Constructors）
     expect(wrapper.find('div.top-icon')).to.have.length(1);//根据组件css进行匹配(CSS Selectors)
     expect(Home.prototype.componentDidMount.calledOnce).to.equal(true);
     wrapper.update();
