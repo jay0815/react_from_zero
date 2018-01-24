@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Layout, Affix, Input, Menu,InputNumber, Timeline, Icon } from 'antd';
+import { Layout, Menu } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import './index.less';
 import Record from '../Record';
 import Photo from '../Photo';
 import Translation from '../Translation';
-const { TextArea } = Input;
+
 const {
-  Header, Footer, Content, Sider
+  Header, Footer, Content
 } = Layout;
 
 export default class Entry extends Component {
@@ -26,16 +26,9 @@ export default class Entry extends Component {
     console.log(error);
   }
   render () {
-    const Tag = this.state.type ? 'Button' : 'TextArea';
-    console.log(Tag);
-    const input = React.createElement(
-      Button,
-      {type: 'primary'},
-      '123'
-    )
+    console.log(this.props.menuList);
     return (
       <div className='entry-body'>
-        {input}
         {/* <div key='body'>
           <Switch>
             <Route exact strict path='/Entry/Record' component={Record} />
@@ -44,7 +37,7 @@ export default class Entry extends Component {
             <Redirect to='/Entry/Record' />
           </Switch>
         </div> */}
-        {/* <Layout>
+        <Layout>
           <Header className='app-header' >
             <div className='heard-css'>
               <div className='logo' />
@@ -82,7 +75,7 @@ export default class Entry extends Component {
             </QueueAnim>
           </Content>
           <Footer key='Footer' />
-        </Layout> */}
+        </Layout>
       </div>
     );
   }
