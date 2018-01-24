@@ -1,5 +1,5 @@
 --require babel-polyfill
---compilers js:babel-core/register
+--require babel-register
 --require ./test/testHelper.js
 --require ./test/setup.js
 --require ignore-styles

@@ -27,6 +27,7 @@ export default class Entry extends Component {
   }
   render () {
     console.log(this.props.menuList);
+    const {menuList} = this.props;
     return (
       <div className='entry-body'>
         {/* <div key='body'>
@@ -51,13 +52,13 @@ export default class Entry extends Component {
                 }}
               >
                 {
-                  this.props.menuList.map((item, index) => {
+                  typeof menuList === undefined ? menuList.map((item, index) => {
                     return (
                       <Menu.Item key={`/Entry/${item.link}`}>
                         {item.name}
                       </Menu.Item>
                     );
-                  })
+                  }) : []
                 }
               </Menu>
             </div>
