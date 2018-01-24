@@ -72,7 +72,17 @@ src ->
                                                               ^^^^^^
 SyntaxError: Unexpected token import
 ```
-
+### 2018.01.24
+- 使用babel-preset-es2015 替换 env，无效
+- 重新安装 babel-helper-module-imports、 babel-types 无效
+- 通过加入testHelp.js(声明绕过编译的文件)，解决了 import 的报错问题，但是又出现了 export 的报错问题
+```
+export var placements = {
+^^^^^^
+SyntaxError: Unexpected token export
+```
+- 使用 babel-plugin-add-module-exports 对export编译，无效
+- 通过testHelp.js(追加更多的需要绕过的文件)，解决了 export 的报错问题. 但是这种方法很不合理，应该是mocha的问题，后续会在其git上提issue的
 
 ### mocha info
 - --check-leaks               //检测全局变量造成的内存泄漏问题
