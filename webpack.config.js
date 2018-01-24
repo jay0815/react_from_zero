@@ -7,7 +7,7 @@ const path = require('path');
 // import ConsoleLogOnBuildWebpackPlugin from './normal';
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const precss = require('precss');
+// const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const rucksackCss = require('rucksack-css');
 const ConsoleLogOnBuildWebpackPlugin = require('./normal');
@@ -15,7 +15,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const theme = require('./theme.js');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const HappyPack = require('happypack');
-const CompressionPlugin = require("compression-webpack-plugin");
+// const CompressionPlugin = require("compression-webpack-plugin");
 const happyThreadPool = HappyPack.ThreadPool({ size: 4 });
 
 // import px2rem from 'postcss-pxtorem';
