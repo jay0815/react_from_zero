@@ -6,7 +6,6 @@ import QueueAnim from 'rc-queue-anim';
 // import './index.less';
 // import { demoSetState, change, login } from '../../Action/index';
 
-@withRouter
 export default class Record extends Component {
   componentWillMount () {
   }

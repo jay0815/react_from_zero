@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import QueueAnim from 'rc-queue-anim';
-import style from './index.less';
+import './index.less';
 import svgIcon from '../../Static/Svg/adminIcon.svg';
 
-
-class Home extends Component {
+export default class Home extends Component {
   componentWillMount () {
   }
   componentDidMount () {
@@ -54,4 +53,3 @@ class Home extends Component {
 // 	fetchUser: PropTypes.func.isRequired,
 // 	demoSetState: PropTypes.func.isRequired
 // };
-export default Home;

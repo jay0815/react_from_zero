@@ -64,7 +64,14 @@ src ->
      模块名xx(eg:Home) ->
         xx.js(页面内容模板)+index.js(用于组合reducer、action 和 模板)+index.less
 ```
-
+### 2018.01.23
+- 测试时使用antd的模块都会报无法使用import的问题，导致测试中断，初步分析认为是无法对深层次的import进行babel转译
+  准备尝试先编译，再测试的方式。
+```
+(function (exports, require, module, __filename, __dirname) { import _defineProperty from 'babel-runtime/helpers/defineProperty';
+                                                              ^^^^^^
+SyntaxError: Unexpected token import
+```
 
 
 ### mocha info

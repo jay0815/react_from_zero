@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Home from './Home.js';
 // import { demoSetState, change } from '../../Action/index';
 
-
 const mapStateToProps = (state) => {
   return {
     isAuth: state.Entry.isAuth
