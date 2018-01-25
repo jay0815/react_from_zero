@@ -5,17 +5,27 @@ import { reducerCreators } from '../Util/index';
 // import { createReducer } from 'redux-immutablejs';
 
 const initialState = {
-	name: '',
-	password: '',
-	token: '',
+  name: '',
+  password: '',
+  token: '',
 };
 
 export default reducerCreators(initialState, {
-	[`${types.SET_LOGIN_INFO}`]: (state, data, params) => {
-		console.log(data);
-		console.log(params);
-		return Object.assign({}, state, {
-			...params
-		});
-	}
+  [`${types.SET_LOGIN_INFO}`]: (state, data, params) => {
+    return Object.assign({}, state, {
+      ...params
+    });
+  },
+  [`${types.LOGIN}_ERROR`]: (state, data, params) => {
+    return state;
+  },
+  [`${types.LOGIN}_SUCCESS`]: (state, data, params) => {
+    return Object.assign({}, state, {
+      ...params
+    });
+  },
+  [`${types.LOGIN}_PENDING`]: (state, data, params) => {
+    return state;
+  }
+
 });

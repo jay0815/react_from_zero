@@ -6,16 +6,11 @@
 // import ConsoleLogOnBuildWebpackPlugin from './normal';
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const precss = require('precss');
+// const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const rucksackCss = require('rucksack-css');
 const ConsoleLogOnBuildWebpackPlugin = require('./normal');
 const path = require('path');
-//
-// const svgSpriteDirs = [
-// 	// require.resolve('antd-mobile').replace(/warn\.js$/, ''), // antd-mobile 内置svg
-// 	path.resolve(__dirname, 'src/Svg'), // 业务代码本地私有 svg 存放目录
-// ];
 const theme = require('./theme.js');
 
 module.exports = {
@@ -107,7 +102,6 @@ module.exports = {
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new ConsoleLogOnBuildWebpackPlugin(),
-		// new webpack.HotModuleReplacementPlugin()
 	// 'vendor' 就是把依赖库(比如react react-router, redux)全部打包到 vendor.js中
 	// 'vendor.js' 就是把自己写的相关js打包到bundle.js中
 	// 一般依赖库放到前面，所以vendor放第一个
@@ -187,15 +181,4 @@ module.exports = {
 			}
 		]
 	}
-//     postcss: function () {
-//   return [
-//     require('precss'),
-//     require('autoprefixer'),
-//     require('rucksack-css'),
-//     pxtorem({
-//       rootValue: 100,
-//       propWhiteList: [],
-//     })
-//   ];
-// }
 };

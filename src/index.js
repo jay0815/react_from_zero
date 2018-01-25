@@ -13,28 +13,30 @@ const history = createHistory();
 
 // 订阅state改变
 store.subscribe(() => {
-	console.log(store.getState());
-	// console.log(process.env.NODE_ENV !== 'production' ? store.getState() : '');
+  // eslint-disable-next-line no-console
+  console.log(store.getState());
+  // console.log(process.env.NODE_ENV !== 'production' ? store.getState() : ''); 正式环境自动去除 console\warnings
 });
 const render = (Component) => {
-	ReactDOM.render(<AppContainer><Provider store={store}><ConnectedRouter history={history}><Component /></ConnectedRouter></Provider></AppContainer>, document.getElementById('root'));
+  ReactDOM.render(<AppContainer><Provider store={store}><ConnectedRouter history={history}><Component /></ConnectedRouter></Provider></AppContainer>, document.getElementById('root'));
 };
 
 render(RouterConfig);
 
 if (module.hot) {
-	/**
+  /**
 	* Warning from React Router, caused by react-hot-loader.
 	* The warning can be safely ignored, so filter it from the console.
 	* Otherwise you'll see it every time something changes.
 	* See https://github.com/gaearon/react-hot-loader/issues/298
 	*/
-	const orgError = console.error; // eslint-disable-line no-console
-	console.error = (message) => { // eslint-disable-line no-console
-		if (message && message.indexOf('You cannot change <Router routes>;') === -1) {
-			// Log the error as normally
-			orgError.apply(console, [message]);
-		}
-	};
-	module.hot.accept('./Router', () => { render(RouterConfig); });
+  const orgError = console.error;// eslint-disable-line no-console
+  // eslint-disable-next-line no-console
+  console.error = (message) => {
+    if (message && message.indexOf('You cannot change <Router routes>;') === -1) {
+      // Log the error as normally
+      orgError.apply(console, [message]);
+    }
+  };
+  module.hot.accept('./Router', () => { render(RouterConfig); });
 }
