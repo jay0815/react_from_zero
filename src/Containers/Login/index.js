@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
+    login: bindActionCreators(login, dispatch),
     change: bindActionCreators(change, dispatch),
   };
 };

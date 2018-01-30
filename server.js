@@ -2,7 +2,7 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     // configObject = require('./config'),
-    jwt = require('jsonwebtoken'),
+    // jwt = require('jsonwebtoken'),
     app = express(),
     request = require('request'),
     path = require('path'),
@@ -74,7 +74,7 @@ app.post('/login', jsonParser, function (req, res) {
     let username = req.body.username;
     let pwd = req.body.password;
     let url = req.body.url;
-	if( isProduction || isStaging ){
+	if( isProduction ){
 		var options = {
 				hostname: 'https-url',
 				path: 'restful-name'+'params',
