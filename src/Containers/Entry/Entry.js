@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import './index.less';
@@ -18,26 +18,19 @@ export default class Entry extends Component {
     type: true
   }
   componentWillMount () {
+    console.log(123);
   }
   componentDidCatch (error, info) {
     // eslint-disable-next-line no-console
     console.log(info);
     // eslint-disable-next-line no-console
     console.log(error);
+
   }
   render () {
-    console.log(this.props.menuList);
     const {menuList} = this.props;
     return (
       <div className='entry-body'>
-        {/* <div key='body'>
-          <Switch>
-            <Route exact strict path='/Entry/Record' component={Record} />
-            <Route exact strict path='/Entry/Photo' component={Photo} />
-            <Route exact strict path='/Entry/Translation' component={Translation} />
-            <Redirect to='/Entry/Record' />
-          </Switch>
-        </div> */}
         <Layout>
           <Header className='app-header' >
             <div className='heard-css'>
@@ -49,12 +42,11 @@ export default class Entry extends Component {
                 style={{ lineHeight: '64px' }}
                 onClick={(value) => { // value ={key: string, keyPath: Array, item: object, domEvent: Proxy}
                   this.props.history.push(value.key);
-                }}
-              >
+                }}>
                 {
-                  typeof menuList === undefined ? menuList.map((item, index) => {
+                  typeof menuList !== undefined ? menuList.map((item) => {
                     return (
-                      <Menu.Item key={`/Entry/${item.link}`}>
+                      <Menu.Item key={`/Entry/${item.link}`} id={item.link}>
                         {item.name}
                       </Menu.Item>
                     );
@@ -70,7 +62,7 @@ export default class Entry extends Component {
                   <Route exact strict path='/Entry/Record' component={Record} />
                   <Route exact strict path='/Entry/Photo' component={Photo} />
                   <Route exact strict path='/Entry/Translation' component={Translation} />
-                  <Redirect to='/Entry/Record' />
+                  {/* <Redirect to='/Entry/Record' /> */}
                 </Switch>
               </div>
             </QueueAnim>
