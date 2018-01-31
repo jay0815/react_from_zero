@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const config = require('./webpack.config-dev.js');
 const opn = require('opn');
 const express = require('express'),
+  bodyParser = require('body-parser'),
 	app = express();
   request = require('request'),
   path = require('path'),
@@ -76,6 +77,7 @@ app.post('/login', jsonParser, function (req, res) {
     let username = req.body.username;
     let pwd = req.body.password;
     let url = req.body.url;
+    console.log(req.body);
 	if( isProduction ){
 		var options = {
 				hostname: 'https-url',
@@ -103,6 +105,7 @@ app.post('/login', jsonParser, function (req, res) {
 	}else{
 		request.post('https-url'+'restful-name'+'params',
 			function (error, response, body) {
+        return res.json({code: '-1', message: 'error'});
 				if (!error && response.statusCode == 200) {
 					// todo try catch
 					let userResult = JSON.parse(body);
@@ -126,6 +129,8 @@ app.post('/login', jsonParser, function (req, res) {
 
 	}
 });
+
+let event = new EventEmitter();
 
 app.listen(5000, function(err) {
   if (err) {

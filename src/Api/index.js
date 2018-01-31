@@ -23,9 +23,8 @@ export const newAPi = new Api({
   baseURI: '/',
   headers: {
     'Accept': 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'timeout': '10000',
-  }
+    'Content-Type': 'application/json'
+},
 });
 
 
