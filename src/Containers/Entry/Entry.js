@@ -25,6 +25,7 @@ export default class Entry extends Component {
     console.log(info);
     // eslint-disable-next-line no-console
     console.log(error);
+    logErrorToMyService(error,info);
 
   }
   render () {

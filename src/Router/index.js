@@ -21,6 +21,7 @@ const createComponent = component => props => (
     {Component => { return <Component {...props} /> }}
   </Bundle>
 );
+
 // 路由配置
 const RouterConfig = () => {
   return (
