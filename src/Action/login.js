@@ -2,7 +2,7 @@ import types from '../Store/types';
 import { get_login } from '../Api/index';
 import { newAPi } from '../Api/index';
 
-export function login (param) {
+export function login (history) {
   return (dispatch, getState) => {
     const params = {
       username: 'bear',
@@ -15,7 +15,12 @@ export function login (param) {
       payload: {
         promise: newAPi.post('login', {
           data: params
-        })
+        }).then((data)=>{
+          history.push('Entry')
+          return data
+        }
+
+        )
       }
     });
     // dispatch({

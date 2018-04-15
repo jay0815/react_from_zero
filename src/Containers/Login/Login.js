@@ -21,7 +21,7 @@ export default class Login extends Component {
     this.props.change({ name: value });
   }
   passwordChange = (value) => {
-    this.props.login();
+    this.props.login(this.props.history);
   }
   render () {
     return (

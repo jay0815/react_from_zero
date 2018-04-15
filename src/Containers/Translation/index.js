@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Component } from 'react-dom';
 import PropTypes from 'prop-types';
-// import { Layout, Affix, Button, Menu } from 'antd';
+import { BackTop } from 'antd';
 // import './index.less';
 
 // const {
@@ -13,9 +13,12 @@ export default class Translation extends Component {
   }
   render () {
     return (
-      <div>
-        Translation
-      </div>
+      [
+        <BackTop />,
+        <div style={{height:1800}}>
+          Translation
+        </div>
+      ]
     );
   }
 }

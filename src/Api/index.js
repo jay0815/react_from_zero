@@ -1,5 +1,5 @@
 import Api from './api';
-
+import { Ajax } from '../Util/Ajax';
 const api = new Api({
   baseURI: objBaseURI(),
   headers: {
@@ -34,21 +34,17 @@ function AjaxServer (type, path, params, data) {
 export async function get_login (params) {
   return AjaxServer('get', '/login',params);
 }
-// export async function get_login (params) {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve({
-//         code: '0',
-//         message: 'success',
-//         content: [
-//           {
-//             name: '123',
-//             sex: 'man',
-//             address: '中国福建省厦门市',
-//             token: 'ae78ds4q787fgh46523dsda2321asada'
-//           }
-//         ]
-//       });
-//     }, 1000);
-//   });
-// }
+
+export const AjaxAction = (method,path,param,data) => {
+  let AjaxParam = {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: method,
+    url: objBaseURI() + path,
+    param: param,
+    data: data
+  }
+  return Ajax(AjaxParam)
+}

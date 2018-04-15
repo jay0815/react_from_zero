@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import ErrorBoundary from '../ErrorBoundary'
+import { Route, Redirect } from 'react-router-dom';
+import ErrorBoundary from '../ErrorBoundary';
+import { getCookie } from '../../Util/index'
 /**
  * [PrivateRoute description]
  * @param {[type]} component 我们传入进来的组件
@@ -8,17 +9,20 @@ import ErrorBoundary from '../ErrorBoundary'
  */
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    true ? (
-      <ErrorBoundary>
-        <Component {...props}/>
-      </ErrorBoundary>
-    ) : (
-      <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-      }}/>
+  <Route {...rest} render={props => {
+    console.log(getCookie('test'));
+    return (
+      getCookie('test') != undefined ? (
+        <ErrorBoundary>
+          <Component {...props}/>
+        </ErrorBoundary>
+      ) : (
+        <Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }}/>
+      )
     )
-  )}/>
+  }} />
 )
 export default PrivateRoute;

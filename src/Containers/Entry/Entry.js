@@ -8,7 +8,7 @@ import './index.less';
 import Record from '../Record';
 import Photo from '../Photo';
 import Translation from '../Translation';
-
+import { delAllCookie } from '../../Util/index'
 const {
   Header, Footer, Content
 } = Layout;
@@ -19,14 +19,6 @@ export default class Entry extends Component {
   }
   componentWillMount () {
     console.log(123);
-  }
-  componentDidCatch (error, info) {
-    // eslint-disable-next-line no-console
-    console.log(info);
-    // eslint-disable-next-line no-console
-    console.log(error);
-    logErrorToMyService(error,info);
-
   }
   render () {
     const {menuList} = this.props;
@@ -43,6 +35,7 @@ export default class Entry extends Component {
                 style={{ lineHeight: '64px' }}
                 onClick={(value) => { // value ={key: string, keyPath: Array, item: object, domEvent: Proxy}
                   this.props.history.push(value.key);
+                  // delAllCookie()
                 }}>
                 {
                   typeof menuList !== undefined ? menuList.map((item) => {
@@ -63,7 +56,7 @@ export default class Entry extends Component {
                   <Route exact strict path='/Entry/Record' component={Record} />
                   <Route exact strict path='/Entry/Photo' component={Photo} />
                   <Route exact strict path='/Entry/Translation' component={Translation} />
-                  {/* <Redirect to='/Entry/Record' /> */}
+                  <Redirect to='/Entry/Record' />
                 </Switch>
               </div>
             </QueueAnim>

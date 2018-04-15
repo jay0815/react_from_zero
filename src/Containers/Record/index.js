@@ -9,7 +9,7 @@ export default class Record extends Component {
   }
   render () {
     return (
-      <div key='Record' style={{ height: '1880px' }}>
+      <div key='Record' style={{ height: '100%' }}>
         <div>123</div>
       </div>
     );

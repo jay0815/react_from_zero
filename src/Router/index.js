@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import PrivateRoute from '../Component/PrivateRoute';
 import Bundle from './../Bundle';
 import Home from '../Containers/Home'; // 首页组件
 // 同步加载
@@ -29,14 +30,14 @@ const RouterConfig = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={createComponent(Login)} />
-        <Route path='/Entry' component={createComponent(Entry)} />
-        <Route
+        <PrivateRoute path='/Entry' component={createComponent(Entry)} />
+        {/* <Route
           render={() => {
             return (
               <Redirect to='/' />
             );
           }}
-        />
+        /> */}
       </Switch>
     </div>
   );
