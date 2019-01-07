@@ -15,6 +15,7 @@ const theme = require('./theme.js');
 
 module.exports = {
 	// debug: true, loaders 的 debug 模式将在 webpack 3 或后续版本中取消。
+	mode: 'development',
 	devtool: 'source-map',
 	entry: {
 		// 文件入口配置
@@ -45,6 +46,13 @@ module.exports = {
 		filename: 'index.js'
 		// 命名生成的JS
 	},
+  optimization: {
+    splitChunks: {
+      name (module) {
+        return 'vendor';
+      }
+    }
+  },
 	plugins: [
 		// new webpack.optimize.OccurrenceOrderPlugin(), webpack 2 or 3 及 更高版本中 OccurrenceOrderPlugin 被默认加载
 		new HtmlWebpackPlugin({
@@ -95,8 +103,8 @@ module.exports = {
 		}),
 		// 很多库的内部，有process.NODE_ENV的判断语句，
 		// 改为production。最直观的就是没有所有的debug相关的东西，体积会减少很多
-
-		new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
+    // config.optimization.splitChunks({ name: 'vendor', filename: 'vendor.js' }),
+		// new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
 		new webpack.LoaderOptionsPlugin({
 			debug: true
 		}),
@@ -147,6 +155,7 @@ module.exports = {
 					{
 						loader: 'less-loader',// compiles Less to CSS
 						options: {
+              javascriptEnabled: true,
 							sourceMap: true,
 							modifyVars : theme
 						}
