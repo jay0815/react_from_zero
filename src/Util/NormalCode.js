@@ -23,29 +23,29 @@ const statusList = {
   207:'Multi-Status',// 代表之后的消息体将是一个XML消息，并且可能依照之前子请求数量的不同，包含一系列独立的响应代码
   208:'Multi-Status',//一个DAV的绑定成员被前一个请求枚举，并且没有被再一次包括
   226:'IM Used',//服务器已经满足了请求所要的资源，并且响应是一个或者多个实例操作应用于当前实例的结果
-  300:'Multiple Choice',//
-  301:'Moved Permanently',//
-  302:'Found',//
-  303:'See Other',//
-  304:'Not Modified',//
-  305:'Use Proxy',//
-  306:'unused',//
-  307:'Temporary Redirect',//
-  308:'Permanent Redirect',//
-  400:'Bad Request',//
-  401:'Unauthorized',//
-  402:'Payment Required',//
-  403:'Forbidden',//
-  404:'Not Found',//
-  405:'Method Not Allowed',//
-  406:'Not Acceptable',//
-  407:'Proxy Authentication Required',//
-  408:'Request Timeout',//
-  409:'Conflict',//
-  410:'Gone',//
-  411:'Length Required',//
-  412:'Precondition Failed',//
-  413:'Payload Too Large',//
+  300:'Multiple Choice',//多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端选择
+  301:'Moved Permanently',//永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替
+  302:'Found',//临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI
+  303:'See Other',//查看其它地址。与301类似。使用GET和POST请求查看
+  304:'Not Modified',//未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源
+  305:'Use Proxy',//使用代理。所请求的资源必须通过代理访问
+  306:'unused',// 该code 已被废弃
+  307:'Temporary Redirect',//临时重定向。与302类似。使用GET请求重定向
+  308:'Permanent Redirect',//这个请求和以后的请求都应该被另一个URI地址重新发送。307、308和302、301有相同的表现，但是不允许HTTP方法改变。
+  400:'Bad Request',//客户端请求的语法错误，服务器无法理解
+  401:'Unauthorized',//请求要求用户的身份认证
+  402:'Payment Required',//保留，将来使用
+  403:'Forbidden',//服务器理解请求客户端的请求，但是拒绝执行此请求
+  404:'Not Found',//服务器无法根据客户端的请求找到资源（网页）。
+  405:'Method Not Allowed',//客户端请求中的方法被禁止
+  406:'Not Acceptable',//服务器无法根据客户端请求的内容特性完成请求
+  407:'Proxy Authentication Required',//请求要求代理的身份认证，与401类似，但请求者应当使用代理进行授权
+  408:'Request Timeout',//服务器等待客户端发送的请求时间过长，超时
+  409:'Conflict',//服务器完成客户端的PUT请求是可能返回此代码，服务器处理请求时发生了冲突
+  410:'Gone',//客户端请求的资源已经不存在
+  411:'Length Required',//服务器无法处理客户端发送的不带Content-Length的请求信息
+  412:'Precondition Failed',//服务器不满足请求者所请求的预置条件
+  413:'Payload Too Large',//请求超过服务器所能处理和允许的最大值
   414:'URI Too Long',//
   415:'Unsupported Media Type',//
   416:'Requested Range Not Satisfiable',//
