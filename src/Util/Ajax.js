@@ -2,9 +2,9 @@
  * [原生js Ajax Demo]
  * @param {String}  [method='GET'] [请求方式]
  * @param {Boolean} [async=false]  [是否为同步请求]
- * @param {[type]}  url            [请求地址]
- * @param {[type]}  param          [参数]
- * @param {[type]}  formData       [表单数据]
+ * @param {String}  url            [请求地址]
+ * @param {Object}  param          [参数]
+ * @param {Object}  formData       [表单数据]
  * @return {Promise} Promise 返回一个promise对象
  */
 export const Ajax = ({
@@ -81,13 +81,15 @@ const responseHandle = ( method, xhr, resolve, reject ) => {
     }
   }
   if(method.toUpperCase() === 'POST'){
-    if(xhr.readyState === 4 && xhr.status === 200){
-      if(xhr.responseText != ''){
-        resolve(xhr.responseText,xhr)
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        if(xhr.responseText != ''){
+          resolve(xhr.responseText,xhr)
+        }
+      }else{
+        let resJson = { code: xhr.status, response: xhr.response }
+        reject(resJson, xhr)
       }
-    }else{
-      let resJson = { code: xhr.status, response: xhr.response }
-      reject(resJson, xhr)
     }
   }
 }
