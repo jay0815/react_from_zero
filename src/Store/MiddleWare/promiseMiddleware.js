@@ -50,7 +50,8 @@ export default function promiseMiddleware ({ dispatch }) {
       }
       action.payload.promise = promise.then(
         result => {
-          dispatch({ ...getResolveAction(), payload: result })
+          console.log(typeof result);
+          dispatch({ ...getResolveAction(), payload: typeof result === 'string' ? JSON.parse(result) : result, params: params })
         },
         error => {
           dispatch({ ...getResolveAction(true), payload: error, error: true })

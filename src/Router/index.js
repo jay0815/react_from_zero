@@ -31,6 +31,7 @@ const RouterConfig = () => {
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={createComponent(Login)} />
         <PrivateRoute path='/Entry' component={createComponent(Entry)} />
+        <Route path='/Home' component={Home} />
         {/* <Route
           render={() => {
             return (

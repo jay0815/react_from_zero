@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Divider } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import './index.less';
 import Record from '../Record';
