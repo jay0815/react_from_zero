@@ -16,7 +16,7 @@ const theme = require('./theme.js');
 module.exports = {
 	// debug: true, loaders 的 debug 模式将在 webpack 3 或后续版本中取消。
 	mode: 'development',
-	devtool: 'source-map',
+  devtool: 'source-map',
 	entry: {
 		// 文件入口配置
 		index: [
@@ -43,7 +43,7 @@ module.exports = {
 		// 输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它.
 		publicPath: '/',
 		// 模板、样式、脚本、图片等资源对应的server上的路径
-		filename: 'index.js'
+		filename: '[name].js'
 		// 命名生成的JS
 	},
   optimization: {
